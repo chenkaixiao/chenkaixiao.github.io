@@ -1,0 +1,893 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>陈凯晓的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jackit">
+    
+
+    
+    <meta property="og:type" content="website">
+<meta property="og:title" content="陈凯晓的技术博客">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="陈凯晓的技术博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="陈凯晓的技术博客">
+
+    
+    <link rel="alternative" href="/atom.xml" title="陈凯晓的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="陈凯晓的技术博客" title="陈凯晓的技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="陈凯晓的技术博客">陈凯晓的技术博客</a></h1>
+				<h2 class="blog-motto">给自己一个不准偷懒的理由</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/25/iOS-MD5加密/" title="iOS-MD5加密" itemprop="url">iOS-MD5加密</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-25T03:23:09.000Z" itemprop="datePublished"> Published 2015-06-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="篇前废话"><a href="#篇前废话" class="headerlink" title="篇前废话"></a>篇前废话</h3><blockquote>
+</blockquote>
+<pre><code>* 在涉及到登录时，密码的加密；
+* 通过在本地md5加密之后一串字符串，然后再发送到服务；
+* 由于md5会再网站 www.cmd5.com 破解，即使是传说中的不可逆。 
+</code></pre><h3 id="加密方式"><a href="#加密方式" class="headerlink" title="加密方式"></a>加密方式</h3><ul>
+<li><p>通过“盐”私钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">废话少说直接上码</span><br><span class="line"></span><br><span class="line">static NSString *token = @&quot;fashffjkdahsfjdasjkvcxnm%^&amp;%^$&amp;^uireqwyi1237281643&quot;; // 所谓“盐”私钥</span><br><span class="line"></span><br><span class="line">// 1 将原始字符拼接token</span><br><span class="line">NSString *str = [NSString stringWithFormat:@&quot;%@%@&quot;, self, token];</span><br><span class="line"></span><br><span class="line">// 2 使用MD5进行对拼接的字符串进行加密</span><br><span class="line">const char *cStr = [str UTF8String];</span><br><span class="line">unsigned char digest[CC_MD5_DIGEST_LENGTH];</span><br><span class="line">CC_MD5(cStr, strlen(cStr), digest);</span><br><span class="line">NSMutableString *result = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];</span><br><span class="line">for(int i = 0; i &lt; CC_MD5_DIGEST_LENGTH; i++) &#123;</span><br><span class="line">	[result appendFormat:@&quot;%02x&quot;, digest[i]];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 3 result 就是加密结果</span><br><span class="line">NSLog(@&quot;加密结果：%@&quot;，result);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过SHA1加密</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)SHA1</span><br><span class="line">&#123;</span><br><span class="line">	const char *cStr = [self UTF8String];</span><br><span class="line">	NSData *data = [NSData dataWithBytes:cStr length:self.length];</span><br><span class="line">	uint8_t digest[CC_SHA1_DIGEST_LENGTH];</span><br><span class="line">	</span><br><span class="line">	CC_SHA1(data.bytes, data.length, digest);</span><br><span class="line">	</span><br><span class="line">	NSMutableString *result = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];</span><br><span class="line">	</span><br><span class="line">	for(int i = 0; i &lt; CC_SHA1_DIGEST_LENGTH; i++) &#123;</span><br><span class="line">	    [result appendFormat:@&quot;%02x&quot;, digest[i]];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/25/iOS-测试代码运行时间/" title="iOS-测试代码运行时间" itemprop="url">iOS-测试代码运行时间</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-25T02:49:23.000Z" itemprop="datePublished"> Published 2015-05-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ul>
+<li><p>方法一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSDate* tmpStartData = [[NSDate date] retain];</span><br><span class="line">//You code here...</span><br><span class="line">double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];</span><br><span class="line">NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;cost time = %f ms&quot;, deltaTime*1000);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> #import &lt;mach/mach_time.h&gt;</span><br><span class="line"></span><br><span class="line">uint64_t start = mach_absolute_time();</span><br><span class="line">//You code here...</span><br><span class="line">uint64_t end = mach_absolute_time();</span><br><span class="line">uint64_t elapsed = end - start；</span><br><span class="line">NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;cost time = %d ms&quot;, elapsed*1000);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/15/iOS-常用第三方库/" title="iOS-常用第三方库" itemprop="url">iOS-常用第三方库</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-15T15:02:10.000Z" itemprop="datePublished"> Published 2015-05-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="常用库"><a href="#常用库" class="headerlink" title="常用库"></a>常用库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">GTMBase64 base64编码解码</span><br><span class="line">TouchXML xml解析</span><br><span class="line"></span><br><span class="line">SSKeychain</span><br><span class="line">SAMKeychain 安全保存用户密码到keychain中，SSKeychain的替代品</span><br><span class="line"></span><br><span class="line">ASIHTTPRequest http等相关协议封装,非常强大的开源框架，已停止更新。</span><br><span class="line">AFNetworking http等相关协议封装,网络相关请求框架。</span><br><span class="line"></span><br><span class="line">MJRefresh 下拉刷新与上拉加载的库,是MJ封装比较好一个开源库。</span><br><span class="line">AsyncImageView 异步加载图片并缓存代码</span><br><span class="line">类似setting的竖立也分栏程序 </span><br><span class="line"></span><br><span class="line">VTMagic -- 模仿写出类似网易、腾讯等应用的菜单分页组件</span><br><span class="line"></span><br><span class="line">MBProgressHUD——进展指示符库，很棒的一个加载等待特效框架</span><br><span class="line">SVProgressHUD--圆圈进度指示符库，比MBProgressHUD还要高端一点。</span><br><span class="line"></span><br><span class="line">ZRPopoverView -- 模仿ipad的UIPoverViewController</span><br><span class="line"></span><br><span class="line">DZNEmptyDataSet</span><br><span class="line">CYLTableViewPlaceHolder  --  UITableView为空数据显示</span><br><span class="line"></span><br><span class="line">pop -- 非常优秀的动画库</span><br><span class="line"></span><br><span class="line">IQKeyboardManager -- *『零行代码』解决键盘遮挡问题*</span><br><span class="line"></span><br><span class="line">Flurry——详尽的使用统计</span><br><span class="line">CorePlot——2D图形绘图仪</span><br><span class="line">GData client——iPhone上所有Google相关服务的类库</span><br><span class="line">SDWebImage——简化网络图片处理</span><br><span class="line">RegexKitLite——正则表达式支持</span><br><span class="line"></span><br><span class="line">YYKit -- 90后大神写的集成开发包。</span><br><span class="line"></span><br><span class="line">NerdyUI -- 最好用的 iOS 快速布局UI库</span><br><span class="line">Masonry -- OC版自动布局相关库。snapkit (Swift版)</span><br><span class="line">MyLayout-- 犹如Android的相对布局等相关库</span><br><span class="line"></span><br><span class="line">XMPPFramework-- xmpp</span><br><span class="line">ZipArchive -- zip压缩与解压</span><br><span class="line">FMDB -- SQlite3的封装</span><br><span class="line">CocoaAsyncSocket -- 异步Socket的封装</span><br><span class="line">CocoaHTTPServer -- 搭建HTTP服务端</span><br><span class="line"></span><br><span class="line">PonyDebugger --开发和调试工具,可以在电脑浏览器上远程调试iOS程序、查看试图层次、网络等等。CocoaLumberjack是个Log工  具，号称是可以提供企业级Log</span><br></pre></td></tr></table></figure>
+<h3 id="扫描wifi信息："><a href="#扫描wifi信息：" class="headerlink" title="扫描wifi信息："></a>扫描wifi信息：</h3><p><a href="http://code.google.com/p/uwecaugmentedrealityproject/" target="_blank" rel="noopener">http://code.google.com/p/uwecaugmentedrealityproject/</a><br><a href="http://code.google.com/p/iphone-wireless/" target="_blank" rel="noopener">http://code.google.com/p/iphone-wireless/</a></p>
+<h3 id="条形码扫描："><a href="#条形码扫描：" class="headerlink" title="条形码扫描："></a>条形码扫描：</h3><p><a href="http://zbar.sourceforge.net/iphone/sdkdoc/install.html" target="_blank" rel="noopener">http://zbar.sourceforge.net/iphone/sdkdoc/install.html</a></p>
+<h3 id="720全景显示panoramagl"><a href="#720全景显示panoramagl" class="headerlink" title="720全景显示panoramagl"></a>720全景显示panoramagl</h3><p><a href="http://code.google.com/p/panoramagl/" target="_blank" rel="noopener">http://code.google.com/p/panoramagl/</a></p>
+<h3 id="其他人整理的资料"><a href="#其他人整理的资料" class="headerlink" title="其他人整理的资料"></a>其他人整理的资料</h3><ul>
+<li><p>iOS超全开源框架、项目和学习资料汇总–数据库、缓存处理、图像浏览、摄像照相视频音频篇<br> <a href="http://www.cocoachina.com/ios/20170215/18692.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20170215/18692.html</a></p>
+</li>
+<li><p>UITableViewCell多种滑动变化及动画效果 Airbnb家的开源动画库<br><a href="http://www.cocoachina.com/ios/20170222/18744.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20170222/18744.html</a></p>
+</li>
+<li><p>字幕滚动 第三方框架 Wonderful  （包含富文本）<br><a href="http://www.cocoachina.com/ios/20170222/18744.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20170222/18744.html</a></p>
+</li>
+<li><p>汇集了相当多的第三方框架的总结<br><a href="http://www.2cto.com/kf/201603/496589.html" target="_blank" rel="noopener">http://www.2cto.com/kf/201603/496589.html</a></p>
+</li>
+<li><p>一个收集了502款开源iOS应用的开源项目<br><a href="http://www.cocoachina.com/ios/20160714/17045.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20160714/17045.html</a></p>
+</li>
+<li><p>iOS干货快速集成搜索界面<em>下拉菜单框架</em><br><a href="http://www.cocoachina.com/ios/20160901/17449.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20160901/17449.html</a></p>
+</li>
+<li><p>Swift 高级库<br><a href="http://www.cocoachina.com/swift/20160525/16437.html" target="_blank" rel="noopener">http://www.cocoachina.com/swift/20160525/16437.html</a></p>
+</li>
+<li><p>封装 fmdb 类似hibernate<br><a href="http://www.cocoachina.com/ios/20160531/16507.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20160531/16507.html</a> </p>
+</li>
+<li><p>用于iOS开发的各种开源库、开源资料、开源技术等等的索引库【厉害了大神】<br><a href="https://github.com/Tim9Liu9/TimLiu-iOS#WebView%E4%B8%8EWKWebView" target="_blank" rel="noopener">https://github.com/Tim9Liu9/TimLiu-iOS#WebView%E4%B8%8EWKWebView</a></p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/第三方库/">第三方库</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/05/iOS-调式技巧/" title="iOS-调式技巧" itemprop="url">iOS-调式技巧</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-05T03:10:08.000Z" itemprop="datePublished"> Published 2015-05-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ul>
+<li><p>可以顶力膜拜这位大神<br> <a href="http://www.cnblogs.com/daiweilai/p/4421340.html" target="_blank" rel="noopener">链接</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">抽刀断Bug</span><br><span class="line">　　普通操作</span><br><span class="line">　　全局断点（Global BreakPoint）</span><br><span class="line">　　条件断点(Condational Breakpoints)</span><br><span class="line">打印的艺术</span><br><span class="line">　　NSLog</span><br><span class="line">　　开启僵尸对象(Enable NSZombie Objects)</span><br><span class="line">进击的码农</span><br><span class="line">　　Console(lldb 命令)</span><br><span class="line">　　Profile(instruments)</span><br><span class="line">　　Xcode视图调试</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/03/iOS-Pods使用常见问题/" title="iOS-Pods使用常见问题" itemprop="url">iOS-Pods使用常见问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-03T03:00:17.000Z" itemprop="datePublished"> Published 2015-05-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ul>
+<li><p>突然pods中得链接失灵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设置 Project-&gt;Info-&gt;Configurations之后  clear ,然后再编译 </span><br><span class="line">在Configurations里面吧Debug 和Release的Tests 的None改为pods</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>有待更新。。。。。 </em> </p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/03/iOS-微信分享SDK常见问题/" title="iOS-微信分享SDK常见问题" itemprop="url">iOS-微信分享SDK常见问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-03T02:22:52.000Z" itemprop="datePublished"> Published 2015-05-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="问题一-在模拟器中"><a href="#问题一-在模拟器中" class="headerlink" title="问题一 在模拟器中"></a>问题一 在模拟器中</h3><ul>
+<li>在Xcode中出现：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Undefined symbols for architecture i386:   &quot;_OBJC_CLASS_$_WXApi&quot;, referenced from:  </span><br><span class="line">objc-class-ref in AppDelegate.o ld: symbol(s) not found for architectur</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>求助StackOverflow也存在类似问题：<br><code>missing required architecture x86_64 in file /Users/zt1370/Desktop/2014-3-20 2/edooongps/EdooonGPS/libWeiboSDK.a</code></p>
+<p>原因：<br><code>链接错误，ibWeiboSDK.a 打包链接是32bit architecture</code></p>
+</li>
+<li><p>最终解决方案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">方法1</span><br><span class="line">   刚去微信公众平台下载demo源码，编译正常。于是build setting-&gt;architecture-&gt;other-&gt;复制$   </span><br><span class="line">   (ARCHS_STANDARD_32_BIT)复制内容加在自己项目target build setting-&gt;architecture</span><br><span class="line">   再构建应该成功了 </span><br><span class="line">方法2</span><br><span class="line"> valid architectures去掉arm64 也行。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="问题二-在真机调试中"><a href="#问题二-在真机调试中" class="headerlink" title="问题二 在真机调试中"></a>问题二 在真机调试中</h3><blockquote>
+<p>如果微信的SDK在工作空间的环境下使用并在工程配置文件的 Other Linker Flags 中设置了  <em>-all_load</em>,<br>  那么会真机编译时产生编译错误,由于真机需要的一些64位的库加载失败,那么这时就不要使用-all_load了,改用 <em>-force_load</em></p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/02/iOS-学习路线图/" title="iOS-学习路线图" itemprop="url">iOS-学习路线图</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-02T15:19:55.000Z" itemprop="datePublished"> Published 2015-05-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><img src="/2015/05/02/iOS-学习路线图/iOS-学习路线图.png" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/01/Hexo的搭建/" title="在Mac上部署Hexo" itemprop="url">在Mac上部署Hexo</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-01T11:41:44.000Z" itemprop="datePublished"> Published 2015-05-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><blockquote>
+<ul>
+<li>1.hexo是基于nodejs的，需安装nodejs，安装nodejs最好选择homebrew</li>
+<li>2.首先查看电脑是否安装ruby，因为homebrew安装依赖ruby</li>
+<li>3.安装顺序：homebrew—-&gt;nodejs—-&gt;hexo</li>
+</ul>
+</blockquote>
+<h3 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
+<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir myblog</span><br><span class="line">$ <span class="built_in">cd</span> myblog</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<p>此时blog文件下出现了很多文件和文件夹，如下图所示<br><img src="/2015/05/01/Hexo的搭建/folderPic.png" alt=""></p>
+<h3 id="使用指令生成静态网页"><a href="#使用指令生成静态网页" class="headerlink" title="使用指令生成静态网页"></a>使用指令生成静态网页</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate /** 生成一套静态网页 **/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：此时在myblog目录下 就会多出名称：public 文件夹</li>
+</ul>
+<h3 id="运行并部署本地博客网站"><a href="#运行并部署本地博客网站" class="headerlink" title="运行并部署本地博客网站"></a>运行并部署本地博客网站</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server /** 在服务器上运行 **/</span><br></pre></td></tr></table></figure>
+<p>下面就是成功的结果：<br><img src="/2015/05/01/Hexo的搭建/pic_success.png" alt=""></p>
+<h3 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h3><p>进入终端，使用cd命令进入到有Hexo框架的目录里面，输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new post <span class="string">"我的第一篇博客"</span></span><br></pre></td></tr></table></figure></p>
+<p>随后出现如下的消息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ INFO  Created: ~/blog/<span class="built_in">source</span>/_posts/我的第一篇博客.md</span><br></pre></td></tr></table></figure>
+<p>证明创建文章成功，“我的第一篇博客”这个md文件会创建在source/_posts/的文件下。</p>
+<p><em>注意：写博客的Markdown语言参考： <a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="noopener">Markdown说明</a> 或者 <a href="http://www.appinn.com/markdown/" target="_blank" rel="noopener">Markdown入门</a></em></p>
+<h4 id="该md文件在自动生成时会带有一些属性："><a href="#该md文件在自动生成时会带有一些属性：" class="headerlink" title="该md文件在自动生成时会带有一些属性："></a>该md文件在自动生成时会带有一些属性：</h4><ul>
+<li>title:     定义了博文的标题</li>
+<li>date:   定义了创作博文的时间</li>
+<li>tags:   定义了博文的标签<br>除了这个三个属性以外我们还可以扩展一些属性    ：</li>
+<li>update:  定义了最后修改的时间</li>
+<li>comments：定义能否评论此博文(默认为true)</li>
+<li>categories: 定义了博文的种类</li>
+</ul>
+<h3 id="配置文件-config-yml说明"><a href="#配置文件-config-yml说明" class="headerlink" title="配置文件_config.yml说明"></a>配置文件_config.yml说明</h3><p>Hexo的每一个功能的配置文件都是_config.yml，它在myblog根目录下。<br>具体说明看下面的注解：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration  </span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html  </span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Site                 ##修改以适应搜索引擎的收录  </span></span><br><span class="line">title: Hexo            <span class="comment">##定义网站的标题  </span></span><br><span class="line">subtitle:              <span class="comment">##定义网站的副标题  </span></span><br><span class="line">description:           <span class="comment">##定义网站的描述  </span></span><br><span class="line">author: jason jwl      <span class="comment">##定义网站的负责人  </span></span><br><span class="line">language:              <span class="comment">##定义网站的语言,默认zh-Hans  </span></span><br><span class="line">timezone:              <span class="comment">##定义网站的时区  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># URL  </span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'  </span></span><br><span class="line">url: http://yoursite.com   <span class="comment">##定义网站访问的域名  </span></span><br><span class="line">root: /      <span class="comment">##定义所在Web文件夹在哪个目录  </span></span><br><span class="line">permalink: :year/:month/:day/:title/  <span class="comment">##定义时间格式  </span></span><br><span class="line">permalink_defaults:  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Directory  </span></span><br><span class="line">source_dir: <span class="built_in">source</span>   <span class="comment">##定义从哪个文件夹获取博客资料  </span></span><br><span class="line">public_dir: public   <span class="comment">##定义生成静态网站到哪个文件夹  </span></span><br><span class="line">  </span><br><span class="line">archive_dir: archives  </span><br><span class="line">category_dir: categories  </span><br><span class="line">code_dir: downloads/code  </span><br><span class="line">i18n_dir: :lang  </span><br><span class="line">skip_render:  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Writing  </span></span><br><span class="line">new_post_name: :title.md <span class="comment"># File name of new posts  </span></span><br><span class="line">default_layout: post  </span><br><span class="line">titlecase: <span class="literal">false</span> <span class="comment"># Transform title into titlecase  </span></span><br><span class="line">external_link: <span class="literal">true</span> <span class="comment"># Open external links in new tab  </span></span><br><span class="line">filename_case: 0  </span><br><span class="line">render_drafts: <span class="literal">false</span>  </span><br><span class="line">post_asset_folder: <span class="literal">false</span>  </span><br><span class="line">relative_link: <span class="literal">false</span>  </span><br><span class="line">future: <span class="literal">true</span>  </span><br><span class="line">highlight:  </span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span>  </span><br><span class="line">  line_number: <span class="literal">true</span>  </span><br><span class="line">  auto_detect: <span class="literal">false</span>  </span><br><span class="line">  tab_replace:  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Category &amp; Tag  </span></span><br><span class="line">default_category: uncategorized  </span><br><span class="line">category_map:  </span><br><span class="line">tag_map:  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Date / Time format  </span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date  </span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in  </span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/  </span></span><br><span class="line">date_format: YYYY-MM-DD  </span><br><span class="line">time_format: HH:mm:ss  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Pagination  </span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination  </span></span><br><span class="line">per_page: 10  <span class="comment">##定义每一页多少条博客  </span></span><br><span class="line">pagination_dir: page  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Extensions  </span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/  </span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/  </span></span><br><span class="line">theme: landscape  <span class="comment">##定义使用的主题  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Deployment  </span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html  </span></span><br><span class="line">deploy:  </span><br><span class="line">  <span class="built_in">type</span>:</span><br></pre></td></tr></table></figure></p>
+<p><em>注意：另外修改这些属性时，请注意格式，属性和值要空一个格，比如 theme: landscape。</em></p>
+<h2 id="将本地博客部署到GitHub上"><a href="#将本地博客部署到GitHub上" class="headerlink" title="将本地博客部署到GitHub上"></a>将本地博客部署到GitHub上</h2><ul>
+<li><p>1、在github上new Repository，并命名为xxxxx.github.io(xxxxx是你github的账号名)，然后把本地项目提交到github的远程项目。<br> <a href="http://blog.csdn.net/jasonjwl/article/details/49682217" target="_blank" rel="noopener">具体操作步骤</a></p>
+</li>
+<li><p>2、_config.yml配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:  </span><br><span class="line"><span class="built_in">type</span>: git  </span><br><span class="line">repo: https://github.com/xxx/xxx.github.io.git  </span><br><span class="line">branch: master  </span><br><span class="line">xxx为个人github的name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、运行  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy  </span><br><span class="line"></span><br><span class="line">如果出现如下错误：</span><br><span class="line"> ERROR Deployer not found: git  </span><br><span class="line"></span><br><span class="line">请运行以下命令进行安装：</span><br><span class="line">$ npm install hexo-deployer-git --save </span><br><span class="line"></span><br><span class="line">再次运行hexo deploy。工程同步成功！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4、注意事项<br>当你增加新的文章或者插件时，可以通过以下三个命令进行同步操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  </span><br><span class="line">hexo generate  </span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h2><h3 id="主题更换"><a href="#主题更换" class="headerlink" title="主题更换"></a>主题更换</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;1&gt; 下载相关的主题：比如 jacman</span><br><span class="line">    下载地址：https://github.com/wuchong/jacman.git</span><br><span class="line">    在文件</span><br><span class="line">    $ <span class="built_in">cd</span> themes </span><br><span class="line">    $ git <span class="built_in">clone</span> https://github.com/wuchong/jacman.git themes/jacman</span><br><span class="line">&lt;2&gt; 在_config.ym找到 </span><br><span class="line">    theme: landscape  <span class="comment">##定义使用的主题 </span></span><br><span class="line">    替换成 theme: jacman  <span class="comment">##定义使用的主题 （注意冒号之后的空格）</span></span><br><span class="line">&lt;3&gt; 重新生成静态网页</span><br><span class="line">    	</span><br><span class="line">    $ hexo generate /** 生成一套静态网页 **/	</span><br><span class="line">    $ hexo server /** 在服务器上运行 **/</span><br><span class="line">   </span><br><span class="line">   访问或刷新页面就可以看到效果。</span><br><span class="line"></span><br><span class="line">&lt;4&gt; 修改主题的相关属性</span><br><span class="line">    * _config.ym进行修改。   </span><br><span class="line">    * img页面替换相关logo图片等</span><br></pre></td></tr></table></figure>
+<h3 id="hexo生成博文插入图片"><a href="#hexo生成博文插入图片" class="headerlink" title="hexo生成博文插入图片"></a>hexo生成博文插入图片</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第一大步：</span><br><span class="line">  1 把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  2 在你的hexo目录下执行这样一句话npm install hexo-asset-image --save，这是下载安装一个可以上传本地图片的插件，来自dalao：dalao的git</span><br><span class="line"></span><br><span class="line">  3 等待一小段时间后，再运行hexo n <span class="string">"xxxx"</span>来生成md博文时，/<span class="built_in">source</span>/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹</span><br><span class="line"></span><br><span class="line">第二大步：</span><br><span class="line"></span><br><span class="line"> 4 最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后只需要在xxxx.md中按照markdown的格式引入图片：</span><br><span class="line"></span><br><span class="line">  ![你想输入的替代文字](xxxx/图片名.jpg)</span><br><span class="line"></span><br><span class="line">  **注意：**xxxx是这个md文件的名字，也是同名文件夹的名字，你想引入的图片就只需要放入xxxx这个文件夹内就好了，很像引用相对路径。</span><br><span class="line"></span><br><span class="line"> 5 最后检查一下，hexo g生成页面后，进入public\2017\02\26\index.html文件中查看相关字段，可以发现，html标签内的语句是&lt;img src=<span class="string">"2017/02/26/xxxx/图片名.jpg"</span>&gt;，而不是&lt;img src=\<span class="string">"xxxx/图片名.jpg&gt;。这很重要，关乎你的网页是否可以真正加载你想插入的图片。</span></span><br></pre></td></tr></table></figure>
+<h3 id="备份Hexo"><a href="#备份Hexo" class="headerlink" title="备份Hexo"></a>备份Hexo</h3><p> 我们常常可能会遇到系统重装或者换电脑编辑的场景，备份变得尤为重要，这里介绍一个hexo-git-backup备份工具</p>
+<p> <a href="https://github.com/coneycode/hexo-git-backup" target="_blank" rel="noopener">备份工具</a></p>
+<p> 大家可以根据自己的实际情况，参照README.md说明进行配置</p>
+<h3 id="获取备份Hexo"><a href="#获取备份Hexo" class="headerlink" title="获取备份Hexo"></a>获取备份Hexo</h3><ul>
+<li>操作步骤1，2</li>
+<li>将Github的备份clone到本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git@github.com:username/username.github.io.git</span><br><span class="line">$ git checkout branchname</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>branchname:备份分支名</p>
+</blockquote>
+<h3 id="其他备份与获取方法"><a href="#其他备份与获取方法" class="headerlink" title="其他备份与获取方法"></a>其他备份与获取方法</h3><p>   可参考 (<a href="http://www.jianshu.com/p/f746f8f7b32d" target="_blank" rel="noopener">http://www.jianshu.com/p/f746f8f7b32d</a>)<br>当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：</p>
+<p>1、先安装hexo<br>$ npm install -g hexo-cli</p>
+<p>2、存在github上的git clone下来 </p>
+<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:LJaer/ljaer.github.io</p>
+<p>3、项目文件夹下npm </p>
+<p>cd项目名/ npm install –no-bin-links </p>
+<p>$ npm install hexo-deployer-git</p>
+<p>4、重新配置github和coding的公钥</p>
+<p>注意：hexo本地测试运行重启后页面空白,提示 : WARN No layout: index.html，可能是主题文件中的文件为空。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/OC/" title="OC">OC<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/第三方库/" title="第三方库">第三方库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Jackit">Jackit</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

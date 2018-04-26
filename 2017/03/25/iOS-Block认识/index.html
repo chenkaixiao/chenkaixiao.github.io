@@ -1,0 +1,543 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS-Block认识 | 陈凯晓的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jackit">
+    
+
+    
+    <meta name="description" content="块的基础知识块的定义 什么是块  块是C、C++、Object-C中的词法闭包。块是用“^”符号来表示，后面跟着一对花括号，括号里面就是块的实现代码。块可以有返回值和传入参数  123456789101112131415161718192021222324最简单如：^&amp;#123;  // block 实现&amp;#125;有如：void (^someBlock)() = ^&amp;#123;   // blo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Block认识">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/iOS-Block认识/index.html">
+<meta property="og:site_name" content="陈凯晓的技术博客">
+<meta property="og:description" content="块的基础知识块的定义 什么是块  块是C、C++、Object-C中的词法闭包。块是用“^”符号来表示，后面跟着一对花括号，括号里面就是块的实现代码。块可以有返回值和传入参数  123456789101112131415161718192021222324最简单如：^&amp;#123;  // block 实现&amp;#125;有如：void (^someBlock)() = ^&amp;#123;   // blo">
+<meta property="og:image" content="http://yoursite.com/2017/03/25/iOS-Block认识/iOS-Block.png">
+<meta property="og:updated_time" content="2017-09-30T01:33:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Block认识">
+<meta name="twitter:description" content="块的基础知识块的定义 什么是块  块是C、C++、Object-C中的词法闭包。块是用“^”符号来表示，后面跟着一对花括号，括号里面就是块的实现代码。块可以有返回值和传入参数  123456789101112131415161718192021222324最简单如：^&amp;#123;  // block 实现&amp;#125;有如：void (^someBlock)() = ^&amp;#123;   // blo">
+<meta name="twitter:image" content="http://yoursite.com/2017/03/25/iOS-Block认识/iOS-Block.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="陈凯晓的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="陈凯晓的技术博客" title="陈凯晓的技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="陈凯晓的技术博客">陈凯晓的技术博客</a></h1>
+				<h2 class="blog-motto">给自己一个不准偷懒的理由</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/25/iOS-Block认识/" title="iOS-Block认识" itemprop="url">iOS-Block认识</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-25T09:11:19.000Z" itemprop="datePublished"> Published 2017-03-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#块的基础知识"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;" class="headerlink" title="&#x5757;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;"></a>&#x5757;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块的定义"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x5757;&#x7684;&#x5B9A;&#x4E49;"></a>&#x5757;&#x7684;&#x5B9A;&#x4E49;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块的内部结构"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;" class="headerlink" title="&#x5757;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;"></a>&#x5757;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局块、栈块及堆块"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x5168;&#x5C40;&#x5757;&#x3001;&#x6808;&#x5757;&#x53CA;&#x5806;&#x5757;" class="headerlink" title="&#x5168;&#x5C40;&#x5757;&#x3001;&#x6808;&#x5757;&#x53CA;&#x5806;&#x5757;"></a>&#x5168;&#x5C40;&#x5757;&#x3001;&#x6808;&#x5757;&#x53CA;&#x5806;&#x5757;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x5C0F;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x7ED3;"></a>&#x5C0F;&#x7ED3;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块的使用"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="&#x5757;&#x7684;&#x4F7F;&#x7528;"></a>&#x5757;&#x7684;&#x4F7F;&#x7528;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用typedef定义别名"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#&#x4F7F;&#x7528;typedef&#x5B9A;&#x4E49;&#x522B;&#x540D;" class="headerlink" title="&#x4F7F;&#x7528;typedef&#x5B9A;&#x4E49;&#x522B;&#x540D;"></a>&#x4F7F;&#x7528;typedef&#x5B9A;&#x4E49;&#x522B;&#x540D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用块降低代码分散度"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#&#x5229;&#x7528;&#x5757;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x5206;&#x6563;&#x5EA6;" class="headerlink" title="&#x5229;&#x7528;&#x5757;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x5206;&#x6563;&#x5EA6;"></a>&#x5229;&#x7528;&#x5757;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x5206;&#x6563;&#x5EA6;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防止块使用出现引用循环"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x9632;&#x6B62;&#x5757;&#x4F7F;&#x7528;&#x51FA;&#x73B0;&#x5F15;&#x7528;&#x5FAA;&#x73AF;" class="headerlink" title="&#x9632;&#x6B62;&#x5757;&#x4F7F;&#x7528;&#x51FA;&#x73B0;&#x5F15;&#x7528;&#x5FAA;&#x73AF;"></a>&#x9632;&#x6B62;&#x5757;&#x4F7F;&#x7528;&#x51FA;&#x73B0;&#x5F15;&#x7528;&#x5FAA;&#x73AF;</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="块的基础知识"><a href="#块的基础知识" class="headerlink" title="块的基础知识"></a>块的基础知识</h2><h3 id="块的定义"><a href="#块的定义" class="headerlink" title="块的定义"></a>块的定义</h3><ul>
+<li><p>什么是块</p>
+<blockquote>
+<p>块是C、C++、Object-C中的词法闭包。<br>块是用“^”符号来表示，后面跟着一对花括号，括号里面就是块的实现代码。<br>块可以有返回值和传入参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">最简单如：</span><br><span class="line">^&#123;</span><br><span class="line">  // block 实现</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">有如：</span><br><span class="line">void (^someBlock)() = ^&#123; </span><br><span class="line">  // block 实现</span><br><span class="line">&#125;</span><br><span class="line">有如：</span><br><span class="line">int (^addBlock)(int a,int b)=^(int a,int b)&#123;</span><br><span class="line">   return a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">有如（捕获并修改外部变量，外部变量需__block修饰）：</span><br><span class="line">NSArray *array = @[@0,@1,@2,@3,@4];</span><br><span class="line">__block NSinteger count = 0;</span><br><span class="line">[array enumerateObjectsUsingBlock:^(NSNumber *number,NSUInteger idx,Bool *stop)&#123;</span><br><span class="line">     if([Number compare:@2] == NSOrderedAscending)&#123;</span><br><span class="line">        count++;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;];</span><br><span class="line"> </span><br><span class="line">// count = 2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="块的内部结构"><a href="#块的内部结构" class="headerlink" title="块的内部结构"></a>块的内部结构</h3><p>  每个OC对象都占据着某个内存区域。块本身也是对象，在存放块对象的内存区域汇总，首个变量是指向Class对象的指针，该指针叫做isa。</p>
+<p>  如下图是块对象的的内存布局：</p>
+<p> <img src="/2017/03/25/iOS-Block认识/iOS-Block.png" alt=""></p>
+<p>块成员变量解析：</p>
+<ul>
+<li>isa：指向块，代表块。</li>
+<li>invoke: 是函数指针，指向块的实现代码，最重要成员变量。</li>
+<li>descriptor: 指向结构体的指针，每个块里面都包含此结构体</li>
+<li>捕获变量区： 用于存放捕获外部变量的内存区域。</li>
+</ul>
+<p>块的描述符decriptor成员解析：</p>
+<ul>
+<li>size:表示块对象的总体大小。</li>
+<li>copy:辅助函数对应的函数指针,用于拷贝块对象运行，保留捕获对象。</li>
+<li>dipose:辅助函数对应的函数指针,用于丢弃块对象运行，释放捕获的对象。</li>
+</ul>
+<blockquote>
+<p>invoke函数将块对象（void*）参数传入，原因在执行块时，要从内存读取捕获的变量。</p>
+</blockquote>
+<h3 id="全局块、栈块及堆块"><a href="#全局块、栈块及堆块" class="headerlink" title="全局块、栈块及堆块"></a>全局块、栈块及堆块</h3><blockquote>
+<p>为什么会有全局块、栈块及堆块?请看一下分析。</p>
+</blockquote>
+<ul>
+<li>栈块与堆块<br>定义的块时候，其所占的内存区域是分配在栈区中。<br>如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void (^block)();</span><br><span class="line">if(condition)&#123;</span><br><span class="line">   // 修改前</span><br><span class="line">   block = ^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock A&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   // 修改之后</span><br><span class="line">    block = [^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock A&quot;);</span><br><span class="line">   &#125; copy]</span><br><span class="line">   </span><br><span class="line">&#125;else(condition)&#123;</span><br><span class="line">   // 修改前</span><br><span class="line">   block = ^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock B&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   // 修改之后</span><br><span class="line">    block = []^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock B&quot;);</span><br><span class="line">   &#125; copy]</span><br><span class="line">&#125;</span><br><span class="line">block();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里代码存在很大的风险，if与else中的block是分配到栈中，它们只在相应的范围有效，离开那个范围之后，编译随时可能把分配给块的内存回收。</p>
+<p>为了解决这个问题，<em>应该对if与else的block进行copy,把他们拷贝到堆内存区域中，这样他们就可以在它们作用范围之外工作了</em>。</p>
+<blockquote>
+<p>block一旦执行拷贝到堆内存区域上，它就成了带有引用计数的对象，后续的拷贝只是计数器+1.<br>MRC中需要手动管理内存。</p>
+</blockquote>
+<ul>
+<li>全局块<blockquote>
+<p>全局块是在编译期就确定<br>全局块可以声明在全局内存区域<br>全局块执行拷贝操作是个空操作<br>全局块不能为系统所回收<br>全局块相当一个单例</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>块是C/C++/Object-C的词法闭包</li>
+<li>块可以接受参数，也可以返回值</li>
+<li>块是分配在栈、堆或全局区域。分配在栈上的块可以拷贝到堆里。</li>
+</ul>
+<h2 id="块的使用"><a href="#块的使用" class="headerlink" title="块的使用"></a>块的使用</h2><h3 id="使用typedef定义别名"><a href="#使用typedef定义别名" class="headerlink" title="使用typedef定义别名"></a>使用typedef定义别名</h3><p>有待更新</p>
+<h3 id="利用块降低代码分散度"><a href="#利用块降低代码分散度" class="headerlink" title="利用块降低代码分散度"></a>利用块降低代码分散度</h3><p>有待更新</p>
+<h2 id="防止块使用出现引用循环"><a href="#防止块使用出现引用循环" class="headerlink" title="防止块使用出现引用循环"></a>防止块使用出现引用循环</h2><p>有待更新</p>
+<p>参考：</p>
+<ul>
+<li>Effective Objective-C 2.0</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/03/25/iOS-Block认识/" data-title="iOS-Block认识 | 陈凯晓的技术博客" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/09/16/网络-局域网ip映射/" title="网络-局域网ip映射到外网">
+  <strong>上一篇：</strong><br/>
+  <span>
+  网络-局域网ip映射到外网</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/02/25/网络-IP种类/"  title="网络-IP种类">
+ <strong>下一篇：</strong><br/> 
+ <span>网络-IP种类
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#块的基础知识"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;" class="headerlink" title="&#x5757;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;"></a>&#x5757;&#x7684;&#x57FA;&#x7840;&#x77E5;&#x8BC6;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块的定义"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x5757;&#x7684;&#x5B9A;&#x4E49;"></a>&#x5757;&#x7684;&#x5B9A;&#x4E49;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块的内部结构"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;" class="headerlink" title="&#x5757;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;"></a>&#x5757;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局块、栈块及堆块"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x5168;&#x5C40;&#x5757;&#x3001;&#x6808;&#x5757;&#x53CA;&#x5806;&#x5757;" class="headerlink" title="&#x5168;&#x5C40;&#x5757;&#x3001;&#x6808;&#x5757;&#x53CA;&#x5806;&#x5757;"></a>&#x5168;&#x5C40;&#x5757;&#x3001;&#x6808;&#x5757;&#x53CA;&#x5806;&#x5757;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x5C0F;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x7ED3;"></a>&#x5C0F;&#x7ED3;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块的使用"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5757;&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="&#x5757;&#x7684;&#x4F7F;&#x7528;"></a>&#x5757;&#x7684;&#x4F7F;&#x7528;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用typedef定义别名"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#&#x4F7F;&#x7528;typedef&#x5B9A;&#x4E49;&#x522B;&#x540D;" class="headerlink" title="&#x4F7F;&#x7528;typedef&#x5B9A;&#x4E49;&#x522B;&#x540D;"></a>&#x4F7F;&#x7528;typedef&#x5B9A;&#x4E49;&#x522B;&#x540D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用块降低代码分散度"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#&#x5229;&#x7528;&#x5757;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x5206;&#x6563;&#x5EA6;" class="headerlink" title="&#x5229;&#x7528;&#x5757;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x5206;&#x6563;&#x5EA6;"></a>&#x5229;&#x7528;&#x5757;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x5206;&#x6563;&#x5EA6;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防止块使用出现引用循环"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x9632;&#x6B62;&#x5757;&#x4F7F;&#x7528;&#x51FA;&#x73B0;&#x5F15;&#x7528;&#x5FAA;&#x73AF;" class="headerlink" title="&#x9632;&#x6B62;&#x5757;&#x4F7F;&#x7528;&#x51FA;&#x73B0;&#x5F15;&#x7528;&#x5FAA;&#x73AF;"></a>&#x9632;&#x6B62;&#x5757;&#x4F7F;&#x7528;&#x51FA;&#x73B0;&#x5F15;&#x7528;&#x5FAA;&#x73AF;</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/OC/" title="OC">OC<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/第三方库/" title="第三方库">第三方库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Jackit">Jackit</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

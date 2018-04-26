@@ -1,0 +1,1281 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>陈凯晓的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jackit">
+    
+
+    
+    <meta property="og:type" content="website">
+<meta property="og:title" content="陈凯晓的技术博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="陈凯晓的技术博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="陈凯晓的技术博客">
+
+    
+    <link rel="alternative" href="/atom.xml" title="陈凯晓的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="陈凯晓的技术博客" title="陈凯晓的技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="陈凯晓的技术博客">陈凯晓的技术博客</a></h1>
+				<h2 class="blog-motto">给自己一个不准偷懒的理由</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/29/iOS-旋转屏幕/" title="iOS-旋转屏幕" itemprop="url">iOS-旋转屏幕</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-29T14:21:38.000Z" itemprop="datePublished"> Published 2017-09-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h3><ul>
+<li><p>- (UIInterfaceOrientationMask)supportedInterfaceOrientations</p>
+<p>告诉设备允许旋转的方向</p>
+</li>
+<li><p>- (BOOL)shouldAutorotate</p>
+<p>告诉设备时候允许自动旋转：supportedInterfaceOrientations返回多个方向的情况下有效</p>
+<h3 id="控制器单独旋转"><a href="#控制器单独旋转" class="headerlink" title="控制器单独旋转"></a>控制器单独旋转</h3><p>有两种方式控制controller的方向:</p>
+<p>作为window的rootViewController<br>作为模态controller</p>
+</li>
+<li><p>ModalViewController<br>这个控制器必须是通过 presentViewController: animated: completion: 出来的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self presentViewController:[A new] animated:YES completion:nil];</span><br></pre></td></tr></table></figure>
+<p>设置可以旋转的方向,当只返回一个值的时候，不会旋转(方向永远与返回的值相同)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//A.m</span><br><span class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations &#123;</span><br><span class="line">       return UIInterfaceOrientationMaskPortrait|</span><br><span class="line">              UIInterfaceOrientationMaskPortraitUpsideDown;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当返回多个值的时候，可以设置 shouldAutorotate 控制是否可以自动旋转(跟随手机方向变化而旋转)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    //A.m</span><br><span class="line">- (BOOL)shouldAutorotate&#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要设置一下：<br><img src="/2017/09/29/iOS-旋转屏幕/iOS-屏幕旋转.jpg" alt=""></p>
+<ul>
+<li>RootViewController<br>但是我们往往并不想 present 一个出来，这个时候就需要设置 rootViewControoler。<br>首先必须重写以下方法</li>
+</ul>
+<ul>
+<li>(UIInterfaceOrientationMask)supportedInterfaceOrientations</li>
+<li>(BOOL)shouldAutorotate</li>
+</ul>
+<p>然后提供一个接口，控制 supportedInterfaceOrientations 返回的值，可以在不同的 controller 中修改返回值而实现控制器单独旋转</p>
+<blockquote>
+<p>当然苹果并没有提供直接告诉设备调用supportedInterfaceOrientations的接口，下一节中有方法</p>
+</blockquote>
+<h3 id="手动更新设备方向"><a href="#手动更新设备方向" class="headerlink" title="手动更新设备方向"></a>手动更新设备方向</h3><p>系统只要调用了 - (UIInterfaceOrientationMask)supportedInterfaceOrientations 方法，设备就会通更改方向。当然该方法并不能主动调用，在stackoverflow中找到了了一个黑科技。<br>在文件夹中找到:</p>
+<ul>
+<li>iOS 6 以后<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   UIViewController *vc = [[UIViewController alloc] init];</span><br><span class="line"></span><br><span class="line">UIImage *image = [self.view snapshotImage]; //当前控制器截图</span><br><span class="line">UIImageView *imageView = [[UIImageView alloc] initWithImage:image];</span><br><span class="line">[vc.view addSubview:imageView];</span><br><span class="line">[imageView autoPinEdgesToSuperviewEdges];</span><br><span class="line"></span><br><span class="line">[self presentViewController:vc animated:NO completion:nil]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当我们 present 的时候，系统就会调用 supportedInterfaceOrientations 告诉设备更新方向。</p>
+<blockquote>
+<p>截图是为了使present过程和谐一点，不然有时候会出现一闪而过的画面。</p>
+</blockquote>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/29/OC-查询数组中的对象/" title="OC-查询数组中的对象" itemprop="url">OC-查询数组中的对象</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-29T14:15:16.000Z" itemprop="datePublished"> Published 2017-09-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="NSString-对象"><a href="#NSString-对象" class="headerlink" title="NSString 对象"></a>NSString 对象</h3><blockquote>
+</blockquote>
+<pre><code>NSArray  *array =@[&quot;123&quot;, @&quot;234&quot;, @&quot;345&quot;];
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;SELF contains [cd] %@&quot;,&quot;2&quot;];
+NSLog(@&quot;%@&quot;, filterdArray );
+//output : @&quot;123&quot;, &quot;234&quot;
+</code></pre><h3 id="含有属性的对象"><a href="#含有属性的对象" class="headerlink" title="含有属性的对象"></a>含有属性的对象</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">   @interface Person: NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, copy) NSString *telephone;</span><br><span class="line">@property (nonatomic, assign) NSInteger id;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+*等于查询
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;name == %@&quot;,&quot;Ansel&quot;];</span><br><span class="line">NSArray *filteredArray = [array filteredArrayUsingPredicate:predicate];</span><br></pre></td></tr></table></figure>
+
+*模糊查询
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;name CONTAINS %@&quot;, @&quot;A&quot;];//predicate只能是对象</span><br><span class="line">NSArray *filteredArray = [array filteredArrayUsingPredicate:predicate];</span><br></pre></td></tr></table></figure>
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/OC/">OC</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/29/OC-NSArray排序/" title="OC-NSArray排序" itemprop="url">OC-NSArray排序</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-29T14:05:17.000Z" itemprop="datePublished"> Published 2017-09-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="NSArray字符串对象排序"><a href="#NSArray字符串对象排序" class="headerlink" title="NSArray字符串对象排序"></a>NSArray字符串对象排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 排序条件</span><br><span class="line">NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch|NSNumericSearch|</span><br><span class="line">        NSWidthInsensitiveSearch|NSForcedOrderingSearch;</span><br><span class="line"></span><br><span class="line">NSComparator sort = ^(NSString *obj1,NSString *obj2)&#123;</span><br><span class="line">    NSRange range = NSMakeRange(0,obj1.length);</span><br><span class="line">    return [obj1 compare:obj2 options:comparisonOptions range:range];</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 获取排序结果</span><br><span class="line">NSArray *resultArray = [subPaths sortedArrayUsingComparator:sort];</span><br></pre></td></tr></table></figure>
+<h3 id="NSArray存放对象属性排序"><a href="#NSArray存放对象属性排序" class="headerlink" title="NSArray存放对象属性排序"></a>NSArray存放对象属性排序</h3><p><em>对象<br>@interface Person : NSObject<br>@property (nonatomic, copy) NSString </em>name;<br>@property (nonatomic, copy) NSString <em>surname;<br>@property (nonatomic, strong) NSDate </em>dateOfBirth;<br>@end </p>
+<p>*数组包含内容<br>Smith John 03/01/1984<br>Andersen Jane 16/03/1979<br>Clark Anne 13/09/1995<br>Smith David 19/07/1981<br>Johnson Rose 22/02/1989</p>
+<p>*使用NSComparator排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSArray *sortedArray = [self.persons sortedArrayUsingComparator:^NSComparisonResult(Person *p1, Person *p2)&#123; </span><br><span class="line">    return [p1.surname compare:p2.surname]; </span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Andersen Jane </span><br><span class="line">Clark Anne </span><br><span class="line">Johnson Rose </span><br><span class="line">Smith John </span><br><span class="line">Smith David</span><br></pre></td></tr></table></figure></p>
+<p>*使用NSDescriptor进行排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSSortDescriptor *firstDescriptor = [[NSSortDescriptor alloc] initWithKey:@&quot;surname&quot; ascending:YES]; </span><br><span class="line">NSSortDescriptor *secondDescriptor = [[NSSortDescriptor alloc] initWithKey:@&quot;name&quot; ascending:YES]; </span><br><span class="line"> </span><br><span class="line">NSArray *sortDescriptors = [NSArray arrayWithObjects:firstDescriptor, secondDescriptor, nil]; </span><br><span class="line"> </span><br><span class="line">NSArray *sortedArray = [self.persons sortedArrayUsingDescriptors:sortDescriptors];</span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/OC/">OC</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/29/iOS视图缩比例限制/" title="iOS-视图缩放比例限制范围实现" itemprop="url">iOS-视图缩放比例限制范围实现</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-29T13:51:03.000Z" itemprop="datePublished"> Published 2017-09-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    CGFloat _lastScale; // 用于记录上一次缩放比例变化量</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 缩放手势事件</span><br><span class="line"> */</span><br><span class="line">- (void) pinchContentView:(UIPinchGestureRecognizer *)pinchGestureRecognizer</span><br><span class="line">&#123;</span><br><span class="line">     UIGestureRecognizerState state = [pinchGestureRecognizer state];</span><br><span class="line">    </span><br><span class="line">    if(state == UIGestureRecognizerStateBegan)&#123;</span><br><span class="line">        _lastScale = [pinchGestureRecognizer scale];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateChanged) &#123;</span><br><span class="line">        </span><br><span class="line">        const CGFloat kMinZoomScale = 1.0; // 最小缩放比例</span><br><span class="line">        const CGFloat kMaxZoomScale = 3.0; // 最大缩放比例</span><br><span class="line">      </span><br><span class="line">        CGFloat currentScale = [[self.layer valueForKeyPath:@&quot;transform.scale&quot;] floatValue];</span><br><span class="line">        CGFloat newScale = 1 -  (_lastScale - [pinchGestureRecognizer scale]);</span><br><span class="line">        newScale = MIN(newScale, kMaxZoomScale / currentScale);</span><br><span class="line">        newScale = MAX(newScale, kMinZoomScale / currentScale);</span><br><span class="line">        </span><br><span class="line">        self.transform = CGAffineTransformScale(self.transform, newScale, newScale);</span><br><span class="line">         _lastScale = [pinchGestureRecognizer scale];</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        // 返回缩放后视图的比例</span><br><span class="line">        CGFloat currentLayerScale = [[self.layer valueForKeyPath:@&quot;transform.scale&quot;] floatValue]; </span><br><span class="line">        if(pinchGestureRecognizer.state == UIGestureRecognizerStateBegan)&#123;</span><br><span class="line">            if(_delegate&amp;&amp;[_delegate respondsToSelector:@selector(drawView:BeginZoomWithScaleX:ScaleY:)])&#123;</span><br><span class="line">                [_delegate drawView:self BeginZoomWithScaleX:currentLayerScale ScaleY:currentLayerScale];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            if(_delegate&amp;&amp;[_delegate respondsToSelector:@selector(drawView:ZoomingWithScaleX:ScaleY:)])&#123;</span><br><span class="line">                [_delegate drawView:self ZoomingWithScaleX:currentLayerScale ScaleY:currentLayerScale];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    if(state == UIGestureRecognizerStateEnded||state == UIGestureRecognizerStateCancelled)&#123;</span><br><span class="line">        if(_delegate&amp;&amp;[_delegate respondsToSelector:@selector(drawViewEndZoom:)])&#123;</span><br><span class="line">            [_delegate drawViewEndZoom:self];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/16/git-相关指令/" title="git-相关指令" itemprop="url">git-相关指令</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-16T03:03:45.000Z" itemprop="datePublished"> Published 2017-09-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="git-查看远程分支、本地分支、创建分支、把分支推到远程repository、删除本地分支"><a href="#git-查看远程分支、本地分支、创建分支、把分支推到远程repository、删除本地分支" class="headerlink" title="git 查看远程分支、本地分支、创建分支、把分支推到远程repository、删除本地分支"></a>git 查看远程分支、本地分支、创建分支、把分支推到远程repository、删除本地分支</h2><h3 id="1-查看远程分支"><a href="#1-查看远程分支" class="headerlink" title="1 查看远程分支"></a>1 查看远程分支</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -a  </span><br><span class="line">   * master</span><br><span class="line">     br-2.1.2.2 </span><br><span class="line">     remotes/origin/br-2.1.2.1</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="2-查看本地分支"><a href="#2-查看本地分支" class="headerlink" title="2 查看本地分支"></a>2 查看本地分支</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch   </span><br><span class="line">   * master</span><br><span class="line">     br-2.1.2.2</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="3-创建分支"><a href="#3-创建分支" class="headerlink" title="3 创建分支"></a>3 创建分支</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git branch test</span><br><span class="line">   * master</span><br><span class="line">     br-2.1.2.2 </span><br><span class="line">$ git branch   </span><br><span class="line">   * master</span><br><span class="line">     br-2.1.2.2  </span><br><span class="line">     test</span><br></pre></td></tr></table></figure>
+
+  线面是把分支推到远程分支
+ $ git push origin test
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">### 4 切换分支到test</span><br><span class="line">    ``` brash</span><br><span class="line">    </span><br><span class="line">     $ git branch   </span><br><span class="line">        * master</span><br><span class="line">          br-2.1.2.2  </span><br><span class="line">          test</span><br><span class="line">      </span><br><span class="line">     $ git checkout test</span><br><span class="line">        M	themes/jacman</span><br><span class="line">         Switched to branch &apos;test&apos;</span><br><span class="line">         Your branch is up-to-date with &apos;origin/test&apos;.</span><br><span class="line">     $ git branch   </span><br><span class="line">          master</span><br><span class="line">          br-2.1.2.2  </span><br><span class="line">        * test</span><br></pre></td></tr></table></figure>
+
+`注意：M 表示cong 原来分支（上一次修改没有提交br-2.1.2.2）带过来的修改`
+</code></pre><h3 id="5-删除本地分支"><a href="#5-删除本地分支" class="headerlink" title="5 删除本地分支"></a>5 删除本地分支</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">$ git branch -d test  </span><br><span class="line">   Deleted branch test</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ git branch   </span><br><span class="line">   *  master</span><br><span class="line">     br-2.1.2.2</span><br></pre></td></tr></table></figure>
+
+`注意：
+  (1) git remote -v 的结果，看出来origin其实就是远程的git地址的一个别名
+  (2) 查看本地和远程分支  -a。前面带*号的代表你当前工作目录所处的分支     
+`
+</code></pre><h3 id="6-删除远程分支"><a href="#6-删除远程分支" class="headerlink" title="6 删除远程分支"></a>6 删除远程分支</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">删除远程分支  </span><br><span class="line">git branch -r -d origin/branch-name  </span><br><span class="line">git push origin :branch-name</span><br></pre></td></tr></table></figure>
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/git/">git</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/16/网络-局域网ip映射/" title="网络-局域网ip映射到外网" itemprop="url">网络-局域网ip映射到外网</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-16T01:39:06.000Z" itemprop="datePublished"> Published 2017-09-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="篇前废话"><a href="#篇前废话" class="headerlink" title="篇前废话"></a>篇前废话</h3><blockquote>
+<p>前阵子由于需要将自己的电脑当做外网服务器，这需要将自己电脑的IP映射到公网中，但是国内很多<br>   相关这方面的工具都是收费的，现在介绍一下国外的 <a href="https://ngrok.com/" target="_blank" rel="noopener">ngrok</a>工具。虽然不是很完美，但是还可以凑合着开发相关的使用。</p>
+</blockquote>
+<ul>
+<li>ngrok的特点：<br>（1）映射的网络地址会每次重启都会改变。<br>（2）服务器在国外，在国内访问相对慢。</li>
+</ul>
+<h3 id="在MAC中ngrok的使用"><a href="#在MAC中ngrok的使用" class="headerlink" title="在MAC中ngrok的使用"></a>在MAC中ngrok的使用</h3><ul>
+<li>在<a href="https://ngrok.com/download" target="_blank" rel="noopener">https://ngrok.com/download</a> 下载Mac包并解压ngrok-stable-darwin-amd64.zip<br>在文件夹中找到:<br><img src="/2017/09/16/网络-局域网ip映射/网络-ngork.png" alt=""></li>
+<li><p>在控制台中使用 cd 命令切换到ngrok文件目录,并执行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./ngrok http 8880</span><br></pre></td></tr></table></figure>
+<p> <code>注意：8880是端口，可以自己任意设置，前提这个端口没有被其他程序占用。</code></p>
+</li>
+<li><p>弹出的控制台如下<br> <img src="/2017/09/16/网络-局域网ip映射/网络-ngork-state.png" alt=""></p>
+</li>
+<li><p>直接在浏览器访问本地服务器，我开启本地的Hexo网站，端口4000：<br> <a href="https://f24e0348.ngrok.io:4000" target="_blank" rel="noopener">https://f24e0348.ngrok.io:4000</a> </p>
+<p> <code>注意： https://f24e0348.ngrok.io 每次重启都会发生变化的。</code></p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/网络/">网络</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/25/iOS-Block认识/" title="iOS-Block认识" itemprop="url">iOS-Block认识</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-25T09:11:19.000Z" itemprop="datePublished"> Published 2017-03-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="块的基础知识"><a href="#块的基础知识" class="headerlink" title="块的基础知识"></a>块的基础知识</h2><h3 id="块的定义"><a href="#块的定义" class="headerlink" title="块的定义"></a>块的定义</h3><ul>
+<li><p>什么是块</p>
+<blockquote>
+<p>块是C、C++、Object-C中的词法闭包。<br>块是用“^”符号来表示，后面跟着一对花括号，括号里面就是块的实现代码。<br>块可以有返回值和传入参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">最简单如：</span><br><span class="line">^&#123;</span><br><span class="line">  // block 实现</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">有如：</span><br><span class="line">void (^someBlock)() = ^&#123; </span><br><span class="line">  // block 实现</span><br><span class="line">&#125;</span><br><span class="line">有如：</span><br><span class="line">int (^addBlock)(int a,int b)=^(int a,int b)&#123;</span><br><span class="line">   return a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">有如（捕获并修改外部变量，外部变量需__block修饰）：</span><br><span class="line">NSArray *array = @[@0,@1,@2,@3,@4];</span><br><span class="line">__block NSinteger count = 0;</span><br><span class="line">[array enumerateObjectsUsingBlock:^(NSNumber *number,NSUInteger idx,Bool *stop)&#123;</span><br><span class="line">     if([Number compare:@2] == NSOrderedAscending)&#123;</span><br><span class="line">        count++;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;];</span><br><span class="line"> </span><br><span class="line">// count = 2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="块的内部结构"><a href="#块的内部结构" class="headerlink" title="块的内部结构"></a>块的内部结构</h3><p>  每个OC对象都占据着某个内存区域。块本身也是对象，在存放块对象的内存区域汇总，首个变量是指向Class对象的指针，该指针叫做isa。</p>
+<p>  如下图是块对象的的内存布局：</p>
+<p> <img src="/2017/03/25/iOS-Block认识/iOS-Block.png" alt=""></p>
+<p>块成员变量解析：</p>
+<ul>
+<li>isa：指向块，代表块。</li>
+<li>invoke: 是函数指针，指向块的实现代码，最重要成员变量。</li>
+<li>descriptor: 指向结构体的指针，每个块里面都包含此结构体</li>
+<li>捕获变量区： 用于存放捕获外部变量的内存区域。</li>
+</ul>
+<p>块的描述符decriptor成员解析：</p>
+<ul>
+<li>size:表示块对象的总体大小。</li>
+<li>copy:辅助函数对应的函数指针,用于拷贝块对象运行，保留捕获对象。</li>
+<li>dipose:辅助函数对应的函数指针,用于丢弃块对象运行，释放捕获的对象。</li>
+</ul>
+<blockquote>
+<p>invoke函数将块对象（void*）参数传入，原因在执行块时，要从内存读取捕获的变量。</p>
+</blockquote>
+<h3 id="全局块、栈块及堆块"><a href="#全局块、栈块及堆块" class="headerlink" title="全局块、栈块及堆块"></a>全局块、栈块及堆块</h3><blockquote>
+<p>为什么会有全局块、栈块及堆块?请看一下分析。</p>
+</blockquote>
+<ul>
+<li>栈块与堆块<br>定义的块时候，其所占的内存区域是分配在栈区中。<br>如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void (^block)();</span><br><span class="line">if(condition)&#123;</span><br><span class="line">   // 修改前</span><br><span class="line">   block = ^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock A&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   // 修改之后</span><br><span class="line">    block = [^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock A&quot;);</span><br><span class="line">   &#125; copy]</span><br><span class="line">   </span><br><span class="line">&#125;else(condition)&#123;</span><br><span class="line">   // 修改前</span><br><span class="line">   block = ^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock B&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   // 修改之后</span><br><span class="line">    block = []^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock B&quot;);</span><br><span class="line">   &#125; copy]</span><br><span class="line">&#125;</span><br><span class="line">block();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里代码存在很大的风险，if与else中的block是分配到栈中，它们只在相应的范围有效，离开那个范围之后，编译随时可能把分配给块的内存回收。</p>
+<p>为了解决这个问题，<em>应该对if与else的block进行copy,把他们拷贝到堆内存区域中，这样他们就可以在它们作用范围之外工作了</em>。</p>
+<blockquote>
+<p>block一旦执行拷贝到堆内存区域上，它就成了带有引用计数的对象，后续的拷贝只是计数器+1.<br>MRC中需要手动管理内存。</p>
+</blockquote>
+<ul>
+<li>全局块<blockquote>
+<p>全局块是在编译期就确定<br>全局块可以声明在全局内存区域<br>全局块执行拷贝操作是个空操作<br>全局块不能为系统所回收<br>全局块相当一个单例</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>块是C/C++/Object-C的词法闭包</li>
+<li>块可以接受参数，也可以返回值</li>
+<li>块是分配在栈、堆或全局区域。分配在栈上的块可以拷贝到堆里。</li>
+</ul>
+<h2 id="块的使用"><a href="#块的使用" class="headerlink" title="块的使用"></a>块的使用</h2><h3 id="使用typedef定义别名"><a href="#使用typedef定义别名" class="headerlink" title="使用typedef定义别名"></a>使用typedef定义别名</h3><p>有待更新</p>
+<h3 id="利用块降低代码分散度"><a href="#利用块降低代码分散度" class="headerlink" title="利用块降低代码分散度"></a>利用块降低代码分散度</h3><p>有待更新</p>
+<h2 id="防止块使用出现引用循环"><a href="#防止块使用出现引用循环" class="headerlink" title="防止块使用出现引用循环"></a>防止块使用出现引用循环</h2><p>有待更新</p>
+<p>参考：</p>
+<ul>
+<li>Effective Objective-C 2.0</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/02/25/网络-IP种类/" title="网络-IP种类" itemprop="url">网络-IP种类</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-25T13:28:08.000Z" itemprop="datePublished"> Published 2016-02-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>IP地址分为A,B,C,D,E五类。</p>
+<pre><code>网络号：用于识别主机所在的网络；
+主机号：用于识别该网络中的主机。
+
+其中A类分配给政府机关使用，B类地址给大中型企业使用，C类地址给个人使用。这三种是主要的。
+
+IP地址分为五类，A类保留给政府机构，B类分配给中等规模的公司，C类分配给任何需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同。
+
+其中A类、B类、和C类这三类地址用于TCP/IP节点，其它两类D类和E类被用于特殊用途。
+A、B、C三类IP地址的特征：当将IP地址写成二进制形式时，A类地址的第一位总是O，B类地址的前两位总是10，C类地址的前三位总是110。
+
+
+1. A类地址
+⑴ A类地址第1字节为网络地址，其它3个字节为主机地址。
+⑵ A类地址范围：1.0.0.1—126.155.255.254
+⑶ A类地址中的私有地址和保留地址：
+① 10.X.X.X是私有地址（所谓的私有地址就是在互联网上不使用，而被用在局域网络中的地址）。
+② 127.X.X.X是保留地址，用做循环测试用的。
+
+2. B类地址
+⑴ B类地址第1字节和第2字节为网络地址，其它2个字节为主机地址。
+⑵ B类地址范围：128.0.0.1—191.255.255.254。
+⑶ B类地址的私有地址和保留地址
+① 172.16.0.0—172.31.255.255是私有地址
+② 169.254.X.X是保留地址。如果你的IP地址是自动获取IP地址，而你在网络上又没有找到可用的DHCP服务器。就会得到其中一个IP。
+
+3. C类地址
+⑴ C类地址第1字节、第2字节和第3个字节为网络地址，第4个个字节为主机地址。另外第1个字节的前三位固定为110。
+⑵ C类地址范围：192.0.0.1—223.255.255.254。
+⑶ C类地址中的私有地址：
+192.168.X.X是私有地址。
+
+4. D类地址
+⑴ D类地址不分网络地址和主机地址，它的第1个字节的前四位固定为1110。
+⑵ D类地址范围：224.0.0.1—239.255.255.254
+
+5. E类地址
+⑴ E类地址也不分网络地址和主机地址，它的第1个字节的前五位固定为11110。
+⑵ E类地址范围：240.0.0.1—255.255.255.254
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/网络/">网络</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/19/iOS-程序生命周期/" title="iOS-程序生命周期" itemprop="url">iOS-程序生命周期</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-19T06:03:50.000Z" itemprop="datePublished"> Published 2015-10-19</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="篇前废话"><a href="#篇前废话" class="headerlink" title="篇前废话"></a>篇前废话</h3><blockquote>
+<p>在从事iOS开发人员来说，对iOS应用程序的生命周期的理解是至关重要的事情，因为对生命周期的理解，可以说对整个程序有个大局的把控。</p>
+</blockquote>
+<h3 id="程序生命状态"><a href="#程序生命状态" class="headerlink" title="程序生命状态"></a>程序生命状态</h3><ul>
+<li>Not running(未运行状态): 程序没启动</li>
+<li>Inactive(未激活状态):程序在前台运行，不过没有接收到事件。在没有事件处理情况下程序通常停留在这个状态</li>
+<li>Active(激活状态):程序在前台运行而且接收到了事件。前台的一个正常的模式</li>
+<li>Backgroud(后台状态):程序在后台而且能执行代码，大多数程序进入这个状态后会在在这个状态上停留一会。一定时间后进入挂起状态，有的程序经过特殊的请求后可以长期处于Backgroud状态</li>
+<li><p>Suspended(挂起状态):程序在后台不能执行代码。系统会自动把程序变成这个状态而且不会发出通知。当挂起时，程序还是停留在内存中的，当系统内存低时，系统就把挂起的程序清除掉，为前台程序提供更多的内存。</p>
+<p>下图是程序状态变化图：<br><img src="/2015/10/19/iOS-程序生命周期/iOS-生命周期状态图1.png" alt=""></p>
+</li>
+</ul>
+<h3 id="程序运行状态代理回调"><a href="#程序运行状态代理回调" class="headerlink" title="程序运行状态代理回调"></a>程序运行状态代理回调</h3><ul>
+<li>-(BOOL)application:(UIApplication <em>)application willFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions<br><code>告诉代理进程启动但还没进入状态保存</code></li>
+<li>-(BOOL)application:(UIApplication <em>)application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions<br><code>告诉代理启动基本完成程序准备开始运行</code></li>
+<li>-(void)applicationWillResignActive:(UIApplication *)application<br>  <code>当应用程序将要入非活动状态执行，在此期间，应用程序不接收消息或事件，比如来电话了</code></li>
+<li>-(void)applicationDidBecomeActive:(UIApplication *)application<br>   <code>当应用程序入活动状态执行，这个刚好跟上面那个方法相反</code></li>
+<li>-(void)applicationDidEnterBackground:(UIApplication *)application<br>  <code>当程序被推送到后台的时候调用。所以要设置后台继续运行，则在这个函数里面设置即可</code></li>
+<li>-(void)applicationWillEnterForeground:(UIApplication *)application<br>  <code>当程序从后台将要重新回到前台时候调用，这个刚好跟上面的那个方法相反。</code></li>
+<li>-(void)applicationWillTerminate:(UIApplication *)application<br>  <code>当程序将要退出是被调用，通常是用来保存数据和一些退出前的清理工作。这个需要要设置UIApplicationExitsOnSuspend的键值。</code></li>
+<li><p>-(void)applicationDidFinishLaunching:(UIApplication*)application<br>  <code>当程序载入后执行</code></p>
+<p>  上面8个方法处于不同状态时,写入NSLog打印<br>  启动程序执行的顺序：</p>
+<p>  启动程序<br>  lifeCycle[40428:11303] willFinishLaunchingWithOptions<br>  lifeCycle[40428:11303] didFinishLaunchingWithOptions<br>  lifeCycle[40428:11303] applicationDidBecomeActive</p>
+<p>  按下home键<br>  lifeCycle[40428:11303] applicationWillResignActive<br>  lifeCycle[40428:11303] applicationDidEnterBackground</p>
+<p>  双击home键，再打开程序<br>  lifeCycle[40428:11303] applicationWillEnterForeground<br>  lifeCycle[40428:11303] applicationDidBecomeActive</p>
+</li>
+</ul>
+<h3 id="程序生命周期"><a href="#程序生命周期" class="headerlink" title="程序生命周期"></a>程序生命周期</h3><ul>
+<li>加载应用程序进入前台<br><img src="/2015/10/19/iOS-程序生命周期/iOS-生命周期前台.png" alt=""></li>
+<li>加载应用程序进入后台<br><img src="/2015/10/19/iOS-程序生命周期/iOS-生命周期后台.png" alt="">      </li>
+<li>关于main函数<br>main函数是程序启动的入口<pre><code class="bash">@autoreleasepool {  
+   <span class="built_in">return</span> UIApplicationMain(argc, argv, nil, NSStringFromClass([MyAppDelegate class]));  
+ }
+</code></pre>
+  UIApplicationMain函数有四个参数<blockquote>
+</blockquote>
+<ul>
+<li>argc 和argv参数包含了系统带过来的启动时间。  </li>
+<li>第三个参数确定了主要应用程序类的名称，这个参数指定为nil，这样UIKit就会使用默认的程序类UIApplication。</li>
+<li>第四个参数是程序自定义的代理类名，这个类负责系统和代码之间的交互。它一般在Xcode新建项目时会自动生成。</li>
+<li>UIApplicationMain函数加载了程序主界面的文件。虽然这个函数加载了界面文件，但是没有放到应用程序的windows上，你需要在Delegate的 application:willFinishLaunchingWithOptions方法中加载它。   </li>
+<li>一个应用程序可以有一个主的storyboard文件或者有一个主的nib文件，但不能同时有两个存在。</li>
+</ul>
+</li>
+</ul>
+<h3 id="响应中断"><a href="#响应中断" class="headerlink" title="响应中断"></a>响应中断</h3><ul>
+<li><p>当一个基于警告式的中断发生时<br>比如有电话打进来了，这是程序会临时进入inactive状态，这用户可以选择如何处理这个中断，流程如下图：<br><img src="/2015/10/19/iOS-程序生命周期/iOS-生命周期响应中断.png" alt=""></p>
+<blockquote>
+<ul>
+<li>在iOS5,通知不会把程序变成为激活状态，通知会显示在状态栏上，如果你；拉下状态栏，程序会变成inactive,把状态栏放回去，程序变回active。</li>
+<li>按锁屏键也是另外一种程序的中断，当你按下锁屏键，系统屏蔽了所有触摸事件，把app放到了后台，这时app状态是 inactive，并进入后台。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>出现中断时，采取措施。</p>
+<blockquote>
+<p>我们应该在applicationWillResignActive:方法中：<br>  1.停止timer 和其他周期性的任务<br>  2.停止任何正在运行的请求<br>  3.暂停视频的播放<br>  4.如果是游戏那就暂停它<br>  5.减少OpenGL ES的帧率<br>  6.挂起任何分发的队列和不重要的操作队列（你可以继续处理网络请求或其他时间敏感的后台任务）。</p>
+</blockquote>
+<p>  当程序回到active状态,applicationDidBecomeActive:   方法应该上面提到的任务重新开始，比如重新开始timer, 继续分发队列，提高OpenGL ES的帧率。不过游戏要回到暂停状态，不能自动开始。  </p>
+</li>
+</ul>
+<h3 id="转入后台运行"><a href="#转入后台运行" class="headerlink" title="转入后台运行"></a>转入后台运行</h3><ul>
+<li><p>原理图所示：</p>
+<p><img src="/2015/10/19/iOS-程序生命周期/iOS-生命周期后台运行.png" alt="">    </p>
+</li>
+<li><p>进入后台时，采取措施。</p>
+<blockquote>
+<p>保存用户数据或状态信息</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="返回前台运行"><a href="#返回前台运行" class="headerlink" title="返回前台运行"></a>返回前台运行</h3><p>  <img src="/2015/10/19/iOS-程序生命周期/iOS-生命周期前台运行.png" alt=""></p>
+<h3 id="程序终止"><a href="#程序终止" class="headerlink" title="程序终止"></a>程序终止</h3><p> 有待。。。。。</p>
+<h3 id="The-Main-Run-Loop-主运行循环"><a href="#The-Main-Run-Loop-主运行循环" class="headerlink" title="The Main Run Loop  主运行循环"></a>The Main Run Loop  主运行循环</h3><ul>
+<li>Main Run Loop  处理事件的架构图<br><img src="/2015/10/19/iOS-程序生命周期/iOS-生命周期MainRunLoop.png" alt=""></li>
+</ul>
+<blockquote>
+<p>用户操作设备，相关的操作事件被系统生成并通过UIKit的指定端口分发。事件在内部排成队列，一个个的分发到Main run loop 去做处理。UIApplication对象是第一个接收到时间的对象，它决定事件如何被处理。触摸事件分发到主窗口，窗口再分发到对应出发触摸事件的View。其他的事件通过其他途径分发给其他对象变量做处理。</p>
+</blockquote>
+<blockquote>
+<p>部分的事件可以在你的应用里分发，类似于触摸事件，远程操控事件（线控耳机等）都是由app的 responder objects 对象处理的。Responder objects 在你的app里到处都是，比如：UIApplication 对象。view对象，view controller 对象，都是resopnder objects。大部分事件的目标都指定了resopnder object，不过事件也可以传递给其他对象。比如，如果view对象不处理事件，可以传给父类view或者view controller。</p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/30/iOS-常用宏/" title="iOS-常用宏" itemprop="url">iOS-常用宏</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-30T13:39:47.000Z" itemprop="datePublished"> Published 2015-06-30</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="收集一点开发常用的宏定义："><a href="#收集一点开发常用的宏定义：" class="headerlink" title="收集一点开发常用的宏定义："></a>收集一点开发常用的宏定义：</h2><pre><code>#ifdef DEBUG
+#define MJLog(...) NSLog(__VA_ARGS__)
+#else
+#define MJLog(...)
+#endif
+// 文字颜色
+#define MJRefreshLabelTextColor 
+         [UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0]
+
+
+//** 沙盒路径 ******************************************************
+#define PATH_OF_APP_HOME    NSHomeDirectory()
+#define PATH_OF_TEMP        NSTemporaryDirectory()
+#define PATH_OF_DOCUMENT    
+    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+/* ***************************************************************************** */
+/** DEBUG LOG **/
+#ifdef DEBUG
+
+#define DLog( s, ... )     NSLog( @&quot;&lt; %@:(%d) &gt; %@&quot;, [[NSString stringWithUTF8String:__FILE__] 
+ lastPathComponent],          __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+
+#else
+
+#define DLog( s, ... )
+
+#endif
+
+
+/* ********************************************************************************** */
+#pragma mark - Frame (宏 x, y, width, height)
+
+// App Frame
+#define Application_Frame       [[UIScreen mainScreen] applicationFrame]
+
+// App Frame Height&amp;Width
+#define App_Frame_Height        [[UIScreen mainScreen] applicationFrame].size.height
+#define App_Frame_Width         [[UIScreen mainScreen] applicationFrame].size.width
+
+// MainScreen Height&amp;Width
+#define Main_Screen_Height      [[UIScreen mainScreen] bounds].size.height
+#define Main_Screen_Width       [[UIScreen mainScreen] bounds].size.width
+
+// View 坐标(x,y)和宽高(width,height)
+#define X(v)                    (v).frame.origin.x
+#define Y(v)                    (v).frame.origin.y
+#define WIDTH(v)                (v).frame.size.width
+#define HEIGHT(v)               (v).frame.size.height
+
+#define MinX(v)                 CGRectGetMinX((v).frame)
+#define MinY(v)                 CGRectGetMinY((v).frame)
+
+#define MidX(v)                 CGRectGetMidX((v).frame)
+#define MidY(v)                 CGRectGetMidY((v).frame)
+
+#define MaxX(v)                 CGRectGetMaxX((v).frame)
+#define MaxY(v)                 CGRectGetMaxY((v).frame)
+
+
+#define RECT_CHANGE_x(v,x)          CGRectMake(x, Y(v), WIDTH(v), HEIGHT(v))
+#define RECT_CHANGE_y(v,y)          CGRectMake(X(v), y, WIDTH(v), HEIGHT(v))
+#define RECT_CHANGE_point(v,x,y)    CGRectMake(x, y, WIDTH(v), HEIGHT(v))
+#define RECT_CHANGE_width(v,w)      CGRectMake(X(v), Y(v), w, HEIGHT(v))
+#define RECT_CHANGE_height(v,h)     CGRectMake(X(v), Y(v), WIDTH(v), h)
+#define RECT_CHANGE_size(v,w,h)     CGRectMake(X(v), Y(v), w, h)
+
+// 系统控件默认高度
+#define kStatusBarHeight        (20.f)
+
+#define kTopBarHeight           (44.f)
+#define kBottomBarHeight        (49.f)
+
+#define kCellDefaultHeight      (44.f)
+
+#define kEnglishKeyboardHeight  (216.f)
+#define kChineseKeyboardHeight  (252.f)
+
+/* ***************************************************************** */
+#pragma mark - Funtion Method (宏 方法)
+
+// PNG JPG 图片路径
+#define PNGPATH(NAME)           [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:NAME] ofType:@&quot;png&quot;]
+#define JPGPATH(NAME)           [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:NAME] ofType:@&quot;jpg&quot;]
+#define PATH(NAME, EXT)         [[NSBundle mainBundle] pathForResource:(NAME) ofType:(EXT)]
+
+// 加载图片
+#define PNGIMAGE(NAME)          [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:(NAME) ofType:@&quot;png&quot;]]
+#define JPGIMAGE(NAME)          [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:(NAME) ofType:@&quot;jpg&quot;]]
+#define IMAGE(NAME, EXT)        [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:(NAME) ofType:(EXT)]]
+
+// 字体大小(常规/粗体)
+#define BOLDSYSTEMFONT(FONTSIZE)[UIFont boldSystemFontOfSize:FONTSIZE]
+#define SYSTEMFONT(FONTSIZE)    [UIFont systemFontOfSize:FONTSIZE]
+#define FONT(NAME, FONTSIZE)    [UIFont fontWithName:(NAME) size:(FONTSIZE)]
+
+// 颜色(RGB)
+#define RGBCOLOR(r, g, b)       [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define RGBACOLOR(r, g, b, a)   [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+
+//number转String
+#define IntTranslateStr(int_str) [NSString stringWithFormat:@&quot;%d&quot;,int_str];
+#define FloatTranslateStr(float_str) [NSString stringWithFormat:@&quot;%.2d&quot;,float_str];
+
+// View 圆角和加边框
+#define ViewBorderRadius(View, Radius, Width, Color)\
+                                \
+                                [View.layer setCornerRadius:(Radius)];\
+                                [View.layer setMasksToBounds:YES];\
+                                [View.layer setBorderWidth:(Width)];\
+                                [View.layer setBorderColor:[Color CGColor]]
+
+// View 圆角
+#define ViewRadius(View, Radius)\
+                                \
+                                [View.layer setCornerRadius:(Radius)];\
+                                [View.layer setMasksToBounds:YES]
+
+// 当前版本
+#define FSystemVersion          ([[[UIDevice currentDevice] systemVersion] floatValue])
+#define DSystemVersion          ([[[UIDevice currentDevice] systemVersion] doubleValue])
+#define SSystemVersion          ([[UIDevice currentDevice] systemVersion])
+
+// 当前语言
+#define CURRENTLANGUAGE         ([[NSLocale preferredLanguages] objectAtIndex:0])
+
+
+//** textAlignment ****************************************************************
+
+#if !defined __IPHONE_OS_VERSION_MIN_REQUIRED &gt;= __IPHONE_5_0
+# define LINE_BREAK_WORD_WRAP UILineBreakModeWordWrap
+# define TextAlignmentLeft UITextAlignmentLeft
+# define TextAlignmentCenter UITextAlignmentCenter
+# define TextAlignmentRight UITextAlignmentRight
+
+#else
+# define LINE_BREAK_WORD_WRAP NSLineBreakByWordWrapping
+# define TextAlignmentLeft NSTextAlignmentLeft
+# define TextAlignmentCenter NSTextAlignmentCenter
+# define TextAlignmentRight NSTextAlignmentRight
+
+#endif
+
+
+// 弱引用/强引用
+#define LRWeakSelf(type)  __weak typeof(type) weak##type = type;
+#define LRStrongSelf(type)  __strong typeof(type) type = weak##type;
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/OC/" title="OC">OC<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/第三方库/" title="第三方库">第三方库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Jackit">Jackit</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>
