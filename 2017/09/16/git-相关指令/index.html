@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>git-相关指令 | 陈凯晓的技术博客</title>
+    <title>git-相关指令 | 陈凯晓的小麻袋</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jackit">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="git-相关指令">
 <meta property="og:url" content="http://yoursite.com/2017/09/16/git-相关指令/index.html">
-<meta property="og:site_name" content="陈凯晓的技术博客">
+<meta property="og:site_name" content="陈凯晓的小麻袋">
 <meta property="og:description" content="git专有名词Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 git 常用指令1 新建代码库12345678# 在当前目录新建一个git代码库$ git init# 新建一个目录，将其初始化为Git代码库$ git init [project-name]# 下载一个项目和它整个代码历史$ git clone [ur">
 <meta property="og:updated_time" content="2018-04-26T08:33:48.000Z">
 <meta name="twitter:card" content="summary">
@@ -23,7 +23,7 @@
 <meta name="twitter:description" content="git专有名词Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 git 常用指令1 新建代码库12345678# 在当前目录新建一个git代码库$ git init# 新建一个目录，将其初始化为Git代码库$ git init [project-name]# 下载一个项目和它整个代码历史$ git clone [ur">
 
     
-    <link rel="alternative" href="/atom.xml" title="陈凯晓的技术博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="陈凯晓的小麻袋" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -41,14 +41,14 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="陈凯晓的技术博客" title="陈凯晓的技术博客"/></a>
+				<a href="/"><img src="/img/logo.png" alt="陈凯晓的小麻袋" title="陈凯晓的小麻袋"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="陈凯晓的技术博客">陈凯晓的技术博客</a></h1>
-				<h2 class="blog-motto">给自己一个不准偷懒的理由</h2>
+				<h1 class="site-name"><a href="/" title="陈凯晓的小麻袋">陈凯晓的小麻袋</a></h1>
+				<h2 class="blog-motto">给自己努力拾金子的理由</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -64,7 +64,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -87,14 +87,14 @@
 		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-16T03:03:45.000Z" itemprop="datePublished"> 发表于 2017-09-16</time>
+    <time datetime="2017-09-16T03:03:45.000Z" itemprop="datePublished"> Published 2017-09-16</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git专有名词"><span class="toc-number">1.</span> <span class="toc-text"><a href="#git&#x4E13;&#x6709;&#x540D;&#x8BCD;" class="headerlink" title="git&#x4E13;&#x6709;&#x540D;&#x8BCD;"></a>git&#x4E13;&#x6709;&#x540D;&#x8BCD;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-常用指令"><span class="toc-number">2.</span> <span class="toc-text"><a href="#git-&#x5E38;&#x7528;&#x6307;&#x4EE4;" class="headerlink" title="git &#x5E38;&#x7528;&#x6307;&#x4EE4;"></a>git &#x5E38;&#x7528;&#x6307;&#x4EE4;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建代码库"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#1-&#x65B0;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;" class="headerlink" title="1 &#x65B0;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;"></a>1 &#x65B0;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#2-&#x914D;&#x7F6E;" class="headerlink" title="2 &#x914D;&#x7F6E;"></a>2 &#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-增加-删除文件"><span class="toc-number">2.3.</span> <span class="toc-text"><a href="#3-&#x589E;&#x52A0;-&#x5220;&#x9664;&#x6587;&#x4EF6;" class="headerlink" title="3 &#x589E;&#x52A0;/&#x5220;&#x9664;&#x6587;&#x4EF6;"></a>3 &#x589E;&#x52A0;/&#x5220;&#x9664;&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-代码提交"><span class="toc-number">2.4.</span> <span class="toc-text"><a href="#4-&#x4EE3;&#x7801;&#x63D0;&#x4EA4;" class="headerlink" title="4 &#x4EE3;&#x7801;&#x63D0;&#x4EA4;"></a>4 &#x4EE3;&#x7801;&#x63D0;&#x4EA4;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-分支"><span class="toc-number">2.5.</span> <span class="toc-text"><a href="#5-&#x5206;&#x652F;" class="headerlink" title="5 &#x5206;&#x652F;"></a>5 &#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-标签"><span class="toc-number">2.6.</span> <span class="toc-text"><a href="#6-&#x6807;&#x7B7E;" class="headerlink" title="6 &#x6807;&#x7B7E;"></a>6 &#x6807;&#x7B7E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-查看信息"><span class="toc-number">2.7.</span> <span class="toc-text"><a href="#7-&#x67E5;&#x770B;&#x4FE1;&#x606F;" class="headerlink" title="7 &#x67E5;&#x770B;&#x4FE1;&#x606F;"></a>7 &#x67E5;&#x770B;&#x4FE1;&#x606F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-远程同步"><span class="toc-number">2.8.</span> <span class="toc-text"><a href="#8-&#x8FDC;&#x7A0B;&#x540C;&#x6B65;" class="headerlink" title="8 &#x8FDC;&#x7A0B;&#x540C;&#x6B65;"></a>8 &#x8FDC;&#x7A0B;&#x540C;&#x6B65;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-撤销"><span class="toc-number">2.9.</span> <span class="toc-text"><a href="#9-&#x64A4;&#x9500;" class="headerlink" title="9 &#x64A4;&#x9500;"></a>9 &#x64A4;&#x9500;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-其他"><span class="toc-number">2.10.</span> <span class="toc-text"><a href="#10-&#x5176;&#x4ED6;" class="headerlink" title="10 &#x5176;&#x4ED6;"></a>10 &#x5176;&#x4ED6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-疑问解答"><span class="toc-number">2.11.</span> <span class="toc-text"><a href="#11-&#x7591;&#x95EE;&#x89E3;&#x7B54;" class="headerlink" title="11 &#x7591;&#x95EE;&#x89E3;&#x7B54;"></a>11 &#x7591;&#x95EE;&#x89E3;&#x7B54;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-查看远程分支、本地分支、创建分支、把分支推到远程repository、删除本地分支"><span class="toc-number">3.</span> <span class="toc-text"><a href="#git-&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x3001;&#x672C;&#x5730;&#x5206;&#x652F;&#x3001;&#x521B;&#x5EFA;&#x5206;&#x652F;&#x3001;&#x628A;&#x5206;&#x652F;&#x63A8;&#x5230;&#x8FDC;&#x7A0B;repository&#x3001;&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;" class="headerlink" title="git &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x3001;&#x672C;&#x5730;&#x5206;&#x652F;&#x3001;&#x521B;&#x5EFA;&#x5206;&#x652F;&#x3001;&#x628A;&#x5206;&#x652F;&#x63A8;&#x5230;&#x8FDC;&#x7A0B;repository&#x3001;&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;"></a>git &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x3001;&#x672C;&#x5730;&#x5206;&#x652F;&#x3001;&#x521B;&#x5EFA;&#x5206;&#x652F;&#x3001;&#x628A;&#x5206;&#x652F;&#x63A8;&#x5230;&#x8FDC;&#x7A0B;repository&#x3001;&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-查看远程分支"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#1-&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;" class="headerlink" title="1 &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"></a>1 &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-查看本地分支"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#2-&#x67E5;&#x770B;&#x672C;&#x5730;&#x5206;&#x652F;" class="headerlink" title="2 &#x67E5;&#x770B;&#x672C;&#x5730;&#x5206;&#x652F;"></a>2 &#x67E5;&#x770B;&#x672C;&#x5730;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建分支"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#3-&#x521B;&#x5EFA;&#x5206;&#x652F;" class="headerlink" title="3 &#x521B;&#x5EFA;&#x5206;&#x652F;"></a>3 &#x521B;&#x5EFA;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-切换分支到test"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#4-&#x5207;&#x6362;&#x5206;&#x652F;&#x5230;test" class="headerlink" title="4 &#x5207;&#x6362;&#x5206;&#x652F;&#x5230;test"></a>4 &#x5207;&#x6362;&#x5206;&#x652F;&#x5230;test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-删除本地分支"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#5-&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;" class="headerlink" title="5 &#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;"></a>5 &#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-删除远程分支"><span class="toc-number">3.6.</span> <span class="toc-text"><a href="#6-&#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;" class="headerlink" title="6 &#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"></a>6 &#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关参考文章"><span class="toc-number">3.7.</span> <span class="toc-text"><a href="#&#x76F8;&#x5173;&#x53C2;&#x8003;&#x6587;&#x7AE0;" class="headerlink" title="&#x76F8;&#x5173;&#x53C2;&#x8003;&#x6587;&#x7AE0;"></a>&#x76F8;&#x5173;&#x53C2;&#x8003;&#x6587;&#x7AE0;</span></a></li></ol></li></ol>
 		
@@ -153,7 +153,7 @@ Remote：远程仓库
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/09/16/git-相关指令/" data-title="git-相关指令 | 陈凯晓的技术博客" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/09/16/git-相关指令/" data-title="git-相关指令 | 陈凯晓的小麻袋" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -190,17 +190,17 @@ Remote：远程仓库
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git专有名词"><span class="toc-number">1.</span> <span class="toc-text"><a href="#git&#x4E13;&#x6709;&#x540D;&#x8BCD;" class="headerlink" title="git&#x4E13;&#x6709;&#x540D;&#x8BCD;"></a>git&#x4E13;&#x6709;&#x540D;&#x8BCD;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-常用指令"><span class="toc-number">2.</span> <span class="toc-text"><a href="#git-&#x5E38;&#x7528;&#x6307;&#x4EE4;" class="headerlink" title="git &#x5E38;&#x7528;&#x6307;&#x4EE4;"></a>git &#x5E38;&#x7528;&#x6307;&#x4EE4;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建代码库"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#1-&#x65B0;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;" class="headerlink" title="1 &#x65B0;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;"></a>1 &#x65B0;&#x5EFA;&#x4EE3;&#x7801;&#x5E93;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#2-&#x914D;&#x7F6E;" class="headerlink" title="2 &#x914D;&#x7F6E;"></a>2 &#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-增加-删除文件"><span class="toc-number">2.3.</span> <span class="toc-text"><a href="#3-&#x589E;&#x52A0;-&#x5220;&#x9664;&#x6587;&#x4EF6;" class="headerlink" title="3 &#x589E;&#x52A0;/&#x5220;&#x9664;&#x6587;&#x4EF6;"></a>3 &#x589E;&#x52A0;/&#x5220;&#x9664;&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-代码提交"><span class="toc-number">2.4.</span> <span class="toc-text"><a href="#4-&#x4EE3;&#x7801;&#x63D0;&#x4EA4;" class="headerlink" title="4 &#x4EE3;&#x7801;&#x63D0;&#x4EA4;"></a>4 &#x4EE3;&#x7801;&#x63D0;&#x4EA4;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-分支"><span class="toc-number">2.5.</span> <span class="toc-text"><a href="#5-&#x5206;&#x652F;" class="headerlink" title="5 &#x5206;&#x652F;"></a>5 &#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-标签"><span class="toc-number">2.6.</span> <span class="toc-text"><a href="#6-&#x6807;&#x7B7E;" class="headerlink" title="6 &#x6807;&#x7B7E;"></a>6 &#x6807;&#x7B7E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-查看信息"><span class="toc-number">2.7.</span> <span class="toc-text"><a href="#7-&#x67E5;&#x770B;&#x4FE1;&#x606F;" class="headerlink" title="7 &#x67E5;&#x770B;&#x4FE1;&#x606F;"></a>7 &#x67E5;&#x770B;&#x4FE1;&#x606F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-远程同步"><span class="toc-number">2.8.</span> <span class="toc-text"><a href="#8-&#x8FDC;&#x7A0B;&#x540C;&#x6B65;" class="headerlink" title="8 &#x8FDC;&#x7A0B;&#x540C;&#x6B65;"></a>8 &#x8FDC;&#x7A0B;&#x540C;&#x6B65;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-撤销"><span class="toc-number">2.9.</span> <span class="toc-text"><a href="#9-&#x64A4;&#x9500;" class="headerlink" title="9 &#x64A4;&#x9500;"></a>9 &#x64A4;&#x9500;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-其他"><span class="toc-number">2.10.</span> <span class="toc-text"><a href="#10-&#x5176;&#x4ED6;" class="headerlink" title="10 &#x5176;&#x4ED6;"></a>10 &#x5176;&#x4ED6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-疑问解答"><span class="toc-number">2.11.</span> <span class="toc-text"><a href="#11-&#x7591;&#x95EE;&#x89E3;&#x7B54;" class="headerlink" title="11 &#x7591;&#x95EE;&#x89E3;&#x7B54;"></a>11 &#x7591;&#x95EE;&#x89E3;&#x7B54;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-查看远程分支、本地分支、创建分支、把分支推到远程repository、删除本地分支"><span class="toc-number">3.</span> <span class="toc-text"><a href="#git-&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x3001;&#x672C;&#x5730;&#x5206;&#x652F;&#x3001;&#x521B;&#x5EFA;&#x5206;&#x652F;&#x3001;&#x628A;&#x5206;&#x652F;&#x63A8;&#x5230;&#x8FDC;&#x7A0B;repository&#x3001;&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;" class="headerlink" title="git &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x3001;&#x672C;&#x5730;&#x5206;&#x652F;&#x3001;&#x521B;&#x5EFA;&#x5206;&#x652F;&#x3001;&#x628A;&#x5206;&#x652F;&#x63A8;&#x5230;&#x8FDC;&#x7A0B;repository&#x3001;&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;"></a>git &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x3001;&#x672C;&#x5730;&#x5206;&#x652F;&#x3001;&#x521B;&#x5EFA;&#x5206;&#x652F;&#x3001;&#x628A;&#x5206;&#x652F;&#x63A8;&#x5230;&#x8FDC;&#x7A0B;repository&#x3001;&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-查看远程分支"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#1-&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;" class="headerlink" title="1 &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"></a>1 &#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-查看本地分支"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#2-&#x67E5;&#x770B;&#x672C;&#x5730;&#x5206;&#x652F;" class="headerlink" title="2 &#x67E5;&#x770B;&#x672C;&#x5730;&#x5206;&#x652F;"></a>2 &#x67E5;&#x770B;&#x672C;&#x5730;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建分支"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#3-&#x521B;&#x5EFA;&#x5206;&#x652F;" class="headerlink" title="3 &#x521B;&#x5EFA;&#x5206;&#x652F;"></a>3 &#x521B;&#x5EFA;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-切换分支到test"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#4-&#x5207;&#x6362;&#x5206;&#x652F;&#x5230;test" class="headerlink" title="4 &#x5207;&#x6362;&#x5206;&#x652F;&#x5230;test"></a>4 &#x5207;&#x6362;&#x5206;&#x652F;&#x5230;test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-删除本地分支"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#5-&#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;" class="headerlink" title="5 &#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;"></a>5 &#x5220;&#x9664;&#x672C;&#x5730;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-删除远程分支"><span class="toc-number">3.6.</span> <span class="toc-text"><a href="#6-&#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;" class="headerlink" title="6 &#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;"></a>6 &#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x5206;&#x652F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关参考文章"><span class="toc-number">3.7.</span> <span class="toc-text"><a href="#&#x76F8;&#x5173;&#x53C2;&#x8003;&#x6587;&#x7AE0;" class="headerlink" title="&#x76F8;&#x5173;&#x53C2;&#x8003;&#x6587;&#x7AE0;"></a>&#x76F8;&#x5173;&#x53C2;&#x8003;&#x6587;&#x7AE0;</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -208,7 +208,7 @@ Remote：远程仓库
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -233,7 +233,7 @@ Remote：远程仓库
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -245,7 +245,7 @@ Remote：远程仓库
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -267,11 +267,11 @@ Remote：远程仓库
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -500,7 +500,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

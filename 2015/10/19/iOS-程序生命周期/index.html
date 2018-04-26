@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>iOS-程序生命周期 | 陈凯晓的技术博客</title>
+    <title>iOS-程序生命周期 | 陈凯晓的小麻袋</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jackit">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-程序生命周期">
 <meta property="og:url" content="http://yoursite.com/2015/10/19/iOS-程序生命周期/index.html">
-<meta property="og:site_name" content="陈凯晓的技术博客">
+<meta property="og:site_name" content="陈凯晓的小麻袋">
 <meta property="og:description" content="篇前废话 在从事iOS开发人员来说，对iOS应用程序的生命周期的理解是至关重要的事情，因为对生命周期的理解，可以说对整个程序有个大局的把控。  程序生命状态 Not running(未运行状态): 程序没启动 Inactive(未激活状态):程序在前台运行，不过没有接收到事件。在没有事件处理情况下程序通常停留在这个状态 Active(激活状态):程序在前台运行而且接收到了事件。前台的一个正常的模式">
 <meta property="og:image" content="http://yoursite.com/2015/10/19/iOS-程序生命周期/iOS-生命周期状态图1.png">
 <meta property="og:image" content="http://yoursite.com/2015/10/19/iOS-程序生命周期/iOS-生命周期前台.png">
@@ -31,7 +31,7 @@
 <meta name="twitter:image" content="http://yoursite.com/2015/10/19/iOS-程序生命周期/iOS-生命周期状态图1.png">
 
     
-    <link rel="alternative" href="/atom.xml" title="陈凯晓的技术博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="陈凯晓的小麻袋" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -49,14 +49,14 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="陈凯晓的技术博客" title="陈凯晓的技术博客"/></a>
+				<a href="/"><img src="/img/logo.png" alt="陈凯晓的小麻袋" title="陈凯晓的小麻袋"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="陈凯晓的技术博客">陈凯晓的技术博客</a></h1>
-				<h2 class="blog-motto">给自己一个不准偷懒的理由</h2>
+				<h1 class="site-name"><a href="/" title="陈凯晓的小麻袋">陈凯晓的小麻袋</a></h1>
+				<h2 class="blog-motto">给自己努力拾金子的理由</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -72,7 +72,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -95,14 +95,14 @@
 		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-19T06:03:50.000Z" itemprop="datePublished"> 发表于 2015-10-19</time>
+    <time datetime="2015-10-19T06:03:50.000Z" itemprop="datePublished"> Published 2015-10-19</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#篇前废话"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x7BC7;&#x524D;&#x5E9F;&#x8BDD;" class="headerlink" title="&#x7BC7;&#x524D;&#x5E9F;&#x8BDD;"></a>&#x7BC7;&#x524D;&#x5E9F;&#x8BDD;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序生命状态"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x72B6;&#x6001;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x72B6;&#x6001;"></a>&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x72B6;&#x6001;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序运行状态代理回调"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4EE3;&#x7406;&#x56DE;&#x8C03;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4EE3;&#x7406;&#x56DE;&#x8C03;"></a>&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4EE3;&#x7406;&#x56DE;&#x8C03;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序生命周期"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x5468;&#x671F;"></a>&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x5468;&#x671F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应中断"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x54CD;&#x5E94;&#x4E2D;&#x65AD;" class="headerlink" title="&#x54CD;&#x5E94;&#x4E2D;&#x65AD;"></a>&#x54CD;&#x5E94;&#x4E2D;&#x65AD;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转入后台运行"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x8F6C;&#x5165;&#x540E;&#x53F0;&#x8FD0;&#x884C;" class="headerlink" title="&#x8F6C;&#x5165;&#x540E;&#x53F0;&#x8FD0;&#x884C;"></a>&#x8F6C;&#x5165;&#x540E;&#x53F0;&#x8FD0;&#x884C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回前台运行"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x8FD4;&#x56DE;&#x524D;&#x53F0;&#x8FD0;&#x884C;" class="headerlink" title="&#x8FD4;&#x56DE;&#x524D;&#x53F0;&#x8FD0;&#x884C;"></a>&#x8FD4;&#x56DE;&#x524D;&#x53F0;&#x8FD0;&#x884C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序终止"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x7EC8;&#x6B62;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x7EC8;&#x6B62;"></a>&#x7A0B;&#x5E8F;&#x7EC8;&#x6B62;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Main-Run-Loop-主运行循环"><span class="toc-number">9.</span> <span class="toc-text"><a href="#The-Main-Run-Loop-&#x4E3B;&#x8FD0;&#x884C;&#x5FAA;&#x73AF;" class="headerlink" title="The Main Run Loop  &#x4E3B;&#x8FD0;&#x884C;&#x5FAA;&#x73AF;"></a>The Main Run Loop  &#x4E3B;&#x8FD0;&#x884C;&#x5FAA;&#x73AF;</span></a></li></ol>
 		
@@ -207,7 +207,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/10/19/iOS-程序生命周期/" data-title="iOS-程序生命周期 | 陈凯晓的技术博客" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/10/19/iOS-程序生命周期/" data-title="iOS-程序生命周期 | 陈凯晓的小麻袋" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -244,17 +244,17 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#篇前废话"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x7BC7;&#x524D;&#x5E9F;&#x8BDD;" class="headerlink" title="&#x7BC7;&#x524D;&#x5E9F;&#x8BDD;"></a>&#x7BC7;&#x524D;&#x5E9F;&#x8BDD;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序生命状态"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x72B6;&#x6001;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x72B6;&#x6001;"></a>&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x72B6;&#x6001;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序运行状态代理回调"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4EE3;&#x7406;&#x56DE;&#x8C03;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4EE3;&#x7406;&#x56DE;&#x8C03;"></a>&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4EE3;&#x7406;&#x56DE;&#x8C03;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序生命周期"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x5468;&#x671F;"></a>&#x7A0B;&#x5E8F;&#x751F;&#x547D;&#x5468;&#x671F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应中断"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x54CD;&#x5E94;&#x4E2D;&#x65AD;" class="headerlink" title="&#x54CD;&#x5E94;&#x4E2D;&#x65AD;"></a>&#x54CD;&#x5E94;&#x4E2D;&#x65AD;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转入后台运行"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x8F6C;&#x5165;&#x540E;&#x53F0;&#x8FD0;&#x884C;" class="headerlink" title="&#x8F6C;&#x5165;&#x540E;&#x53F0;&#x8FD0;&#x884C;"></a>&#x8F6C;&#x5165;&#x540E;&#x53F0;&#x8FD0;&#x884C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回前台运行"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x8FD4;&#x56DE;&#x524D;&#x53F0;&#x8FD0;&#x884C;" class="headerlink" title="&#x8FD4;&#x56DE;&#x524D;&#x53F0;&#x8FD0;&#x884C;"></a>&#x8FD4;&#x56DE;&#x524D;&#x53F0;&#x8FD0;&#x884C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序终止"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x7A0B;&#x5E8F;&#x7EC8;&#x6B62;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x7EC8;&#x6B62;"></a>&#x7A0B;&#x5E8F;&#x7EC8;&#x6B62;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Main-Run-Loop-主运行循环"><span class="toc-number">9.</span> <span class="toc-text"><a href="#The-Main-Run-Loop-&#x4E3B;&#x8FD0;&#x884C;&#x5FAA;&#x73AF;" class="headerlink" title="The Main Run Loop  &#x4E3B;&#x8FD0;&#x884C;&#x5FAA;&#x73AF;"></a>The Main Run Loop  &#x4E3B;&#x8FD0;&#x884C;&#x5FAA;&#x73AF;</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -262,7 +262,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -287,7 +287,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -299,7 +299,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -321,11 +321,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -554,7 +554,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

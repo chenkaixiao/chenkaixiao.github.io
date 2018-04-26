@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>iOS-旋转屏幕 | 陈凯晓的技术博客</title>
+    <title>iOS-旋转屏幕 | 陈凯晓的小麻袋</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jackit">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-旋转屏幕">
 <meta property="og:url" content="http://yoursite.com/2017/09/29/iOS-旋转屏幕/index.html">
-<meta property="og:site_name" content="陈凯晓的技术博客">
+<meta property="og:site_name" content="陈凯晓的小麻袋">
 <meta property="og:description" content="主要方法 - (UIInterfaceOrientationMask)supportedInterfaceOrientations 告诉设备允许旋转的方向  - (BOOL)shouldAutorotate 告诉设备时候允许自动旋转：supportedInterfaceOrientations返回多个方向的情况下有效 控制器单独旋转有两种方式控制controller的方向: 作为window的ro">
 <meta property="og:image" content="http://yoursite.com/2017/09/29/iOS-旋转屏幕/iOS-屏幕旋转.jpg">
 <meta property="og:updated_time" content="2017-09-30T01:33:16.000Z">
@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="http://yoursite.com/2017/09/29/iOS-旋转屏幕/iOS-屏幕旋转.jpg">
 
     
-    <link rel="alternative" href="/atom.xml" title="陈凯晓的技术博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="陈凯晓的小麻袋" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -43,14 +43,14 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="陈凯晓的技术博客" title="陈凯晓的技术博客"/></a>
+				<a href="/"><img src="/img/logo.png" alt="陈凯晓的小麻袋" title="陈凯晓的小麻袋"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="陈凯晓的技术博客">陈凯晓的技术博客</a></h1>
-				<h2 class="blog-motto">给自己一个不准偷懒的理由</h2>
+				<h1 class="site-name"><a href="/" title="陈凯晓的小麻袋">陈凯晓的小麻袋</a></h1>
+				<h2 class="blog-motto">给自己努力拾金子的理由</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -66,7 +66,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -89,14 +89,14 @@
 		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-29T14:21:38.000Z" itemprop="datePublished"> 发表于 2017-09-29</time>
+    <time datetime="2017-09-29T14:21:38.000Z" itemprop="datePublished"> Published 2017-09-29</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要方法"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3B;&#x8981;&#x65B9;&#x6CD5;" class="headerlink" title="&#x4E3B;&#x8981;&#x65B9;&#x6CD5;"></a>&#x4E3B;&#x8981;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制器单独旋转"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x63A7;&#x5236;&#x5668;&#x5355;&#x72EC;&#x65CB;&#x8F6C;" class="headerlink" title="&#x63A7;&#x5236;&#x5668;&#x5355;&#x72EC;&#x65CB;&#x8F6C;"></a>&#x63A7;&#x5236;&#x5668;&#x5355;&#x72EC;&#x65CB;&#x8F6C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动更新设备方向"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x624B;&#x52A8;&#x66F4;&#x65B0;&#x8BBE;&#x5907;&#x65B9;&#x5411;" class="headerlink" title="&#x624B;&#x52A8;&#x66F4;&#x65B0;&#x8BBE;&#x5907;&#x65B9;&#x5411;"></a>&#x624B;&#x52A8;&#x66F4;&#x65B0;&#x8BBE;&#x5907;&#x65B9;&#x5411;</span></a></li></ol>
 		
@@ -157,7 +157,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/09/29/iOS-旋转屏幕/" data-title="iOS-旋转屏幕 | 陈凯晓的技术博客" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/09/29/iOS-旋转屏幕/" data-title="iOS-旋转屏幕 | 陈凯晓的小麻袋" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,17 +186,17 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要方法"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3B;&#x8981;&#x65B9;&#x6CD5;" class="headerlink" title="&#x4E3B;&#x8981;&#x65B9;&#x6CD5;"></a>&#x4E3B;&#x8981;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制器单独旋转"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x63A7;&#x5236;&#x5668;&#x5355;&#x72EC;&#x65CB;&#x8F6C;" class="headerlink" title="&#x63A7;&#x5236;&#x5668;&#x5355;&#x72EC;&#x65CB;&#x8F6C;"></a>&#x63A7;&#x5236;&#x5668;&#x5355;&#x72EC;&#x65CB;&#x8F6C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动更新设备方向"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x624B;&#x52A8;&#x66F4;&#x65B0;&#x8BBE;&#x5907;&#x65B9;&#x5411;" class="headerlink" title="&#x624B;&#x52A8;&#x66F4;&#x65B0;&#x8BBE;&#x5907;&#x65B9;&#x5411;"></a>&#x624B;&#x52A8;&#x66F4;&#x65B0;&#x8BBE;&#x5907;&#x65B9;&#x5411;</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -204,7 +204,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -229,7 +229,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -241,7 +241,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -263,11 +263,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -496,7 +496,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
