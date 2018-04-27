@@ -398,8 +398,18 @@ Remote：远程仓库
   (2) 查看本地和远程分支  -a。前面带*号的代表你当前工作目录所处的分支     
 `
 </code></pre><h3 id="6-删除远程分支"><a href="#6-删除远程分支" class="headerlink" title="6 删除远程分支"></a>6 删除远程分支</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">删除远程分支  </span><br><span class="line">git branch -r -d origin/branch-name  </span><br><span class="line">git push origin :branch-name</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="相关参考文章"><a href="#相关参考文章" class="headerlink" title="相关参考文章"></a>相关参考文章</h3><ul>
+</code></pre><h2 id="git子模块-submodule创建与使用"><a href="#git子模块-submodule创建与使用" class="headerlink" title="git子模块 submodule创建与使用"></a>git子模块 submodule创建与使用</h2><h3 id="Submodule解决的问题"><a href="#Submodule解决的问题" class="headerlink" title="Submodule解决的问题"></a>Submodule解决的问题</h3><p>基于公司的项目会越来越多，常常需要提取一个公共的类库提供给多个项目使用，但是这个library怎么和git在一起方便管理呢？</p>
+<pre><code>* 我们需要解决下面几个问题：
+* 如何在git项目中导入library库?
+* library库在其他的项目中被修改了可以更新到远程的代码库中?
+* 其他项目如何获取到library库最新的提交?
+* 如何在clone的时候能够自动导入library库?
+</code></pre><p>解决以上问题，可以考虑使用git的 Submodule来解决。</p>
+<h3 id="什么是Submodule"><a href="#什么是Submodule" class="headerlink" title="什么是Submodule?"></a>什么是Submodule?</h3><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git Submodule 是一个很好的多项目使用共同类库的工具，他允许类库项目做为repository,子项目做为一个单独</span><br><span class="line">的git项目存在父项目中，子项目可以有自己的独立的commit，push，pull。而父项目以Submodule的形式包含子</span><br><span class="line">项目，父项目可以指定子项目header，父项目中会的提交信息包含Submodule的信息，再<span class="built_in">clone</span>父项目的时候可以把</span><br><span class="line">Submodule初始化。</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="在项目中怎么使用Submodule"><a href="#在项目中怎么使用Submodule" class="headerlink" title="在项目中怎么使用Submodule"></a>在项目中怎么使用Submodule</h3><ul>
+<li>请参考 <a href="https://segmentfault.com/a/1190000003076028" target="_blank" rel="noopener">GitSubmodule</a> 的使用<h3 id="相关参考文章"><a href="#相关参考文章" class="headerlink" title="相关参考文章"></a>相关参考文章</h3></li>
 <li><a href="https://www.cnblogs.com/chenwolong/p/GIT.html" target="_blank" rel="noopener">Git常用命令</a></li>
+<li><a href="https://segmentfault.com/a/1190000003076028" target="_blank" rel="noopener">GitSubmodule</a></li>
 </ul>
 
         
