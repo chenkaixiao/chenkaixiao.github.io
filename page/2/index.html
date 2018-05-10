@@ -78,6 +78,99 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/02/25/网络-IP种类/" title="网络-IP种类" itemprop="url">网络-IP种类</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-25T13:28:08.000Z" itemprop="datePublished"> Published 2016-02-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>IP地址分为A,B,C,D,E五类。</p>
+<pre><code>网络号：用于识别主机所在的网络；
+主机号：用于识别该网络中的主机。
+
+其中A类分配给政府机关使用，B类地址给大中型企业使用，C类地址给个人使用。这三种是主要的。
+
+IP地址分为五类，A类保留给政府机构，B类分配给中等规模的公司，C类分配给任何需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同。
+
+其中A类、B类、和C类这三类地址用于TCP/IP节点，其它两类D类和E类被用于特殊用途。
+A、B、C三类IP地址的特征：当将IP地址写成二进制形式时，A类地址的第一位总是O，B类地址的前两位总是10，C类地址的前三位总是110。
+
+
+1. A类地址
+⑴ A类地址第1字节为网络地址，其它3个字节为主机地址。
+⑵ A类地址范围：1.0.0.1—126.155.255.254
+⑶ A类地址中的私有地址和保留地址：
+① 10.X.X.X是私有地址（所谓的私有地址就是在互联网上不使用，而被用在局域网络中的地址）。
+② 127.X.X.X是保留地址，用做循环测试用的。
+
+2. B类地址
+⑴ B类地址第1字节和第2字节为网络地址，其它2个字节为主机地址。
+⑵ B类地址范围：128.0.0.1—191.255.255.254。
+⑶ B类地址的私有地址和保留地址
+① 172.16.0.0—172.31.255.255是私有地址
+② 169.254.X.X是保留地址。如果你的IP地址是自动获取IP地址，而你在网络上又没有找到可用的DHCP服务器。就会得到其中一个IP。
+
+3. C类地址
+⑴ C类地址第1字节、第2字节和第3个字节为网络地址，第4个个字节为主机地址。另外第1个字节的前三位固定为110。
+⑵ C类地址范围：192.0.0.1—223.255.255.254。
+⑶ C类地址中的私有地址：
+192.168.X.X是私有地址。
+
+4. D类地址
+⑴ D类地址不分网络地址和主机地址，它的第1个字节的前四位固定为1110。
+⑵ D类地址范围：224.0.0.1—239.255.255.254
+
+5. E类地址
+⑴ E类地址也不分网络地址和主机地址，它的第1个字节的前五位固定为11110。
+⑵ E类地址范围：240.0.0.1—255.255.255.254
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/网络/">网络</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/10/19/iOS-程序生命周期/" title="iOS-程序生命周期" itemprop="url">iOS-程序生命周期</a>
   </h1>
   <p class="article-author">By
@@ -861,142 +954,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/01/Hexo的搭建/" title="在Mac上部署Hexo" itemprop="url">在Mac上部署Hexo</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-01T11:41:44.000Z" itemprop="datePublished"> Published 2015-05-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><blockquote>
-<ul>
-<li>1.hexo是基于nodejs的，需安装nodejs，安装nodejs最好选择homebrew</li>
-<li>2.首先查看电脑是否安装ruby，因为homebrew安装依赖ruby</li>
-<li>3.安装顺序：homebrew—-&gt;nodejs—-&gt;hexo</li>
-</ul>
-</blockquote>
-<h3 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
-<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir myblog</span><br><span class="line">$ <span class="built_in">cd</span> myblog</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<p>此时blog文件下出现了很多文件和文件夹，如下图所示<br><img src="/2015/05/01/Hexo的搭建/folderPic.png" alt=""></p>
-<h3 id="使用指令生成静态网页"><a href="#使用指令生成静态网页" class="headerlink" title="使用指令生成静态网页"></a>使用指令生成静态网页</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate /** 生成一套静态网页 **/</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意：此时在myblog目录下 就会多出名称：public 文件夹</li>
-</ul>
-<h3 id="运行并部署本地博客网站"><a href="#运行并部署本地博客网站" class="headerlink" title="运行并部署本地博客网站"></a>运行并部署本地博客网站</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server /** 在服务器上运行 **/</span><br></pre></td></tr></table></figure>
-<p>下面就是成功的结果：<br><img src="/2015/05/01/Hexo的搭建/pic_success.png" alt=""></p>
-<h3 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h3><p>进入终端，使用cd命令进入到有Hexo框架的目录里面，输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new post <span class="string">"我的第一篇博客"</span></span><br></pre></td></tr></table></figure></p>
-<p>随后出现如下的消息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ INFO  Created: ~/blog/<span class="built_in">source</span>/_posts/我的第一篇博客.md</span><br></pre></td></tr></table></figure>
-<p>证明创建文章成功，“我的第一篇博客”这个md文件会创建在source/_posts/的文件下。</p>
-<p>Mardonw编辑器的介绍</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Mou:</span><br><span class="line">Mou 是 Mac下杰出的 Markdown 编辑器，提供语法高亮、在线预览、同步滚动、全屏模式，支持自定保存、自动匹配，允许自定义主题，支持 CSS，HTML 和 PDF 导出等。</span><br><span class="line">下载地址：http://mouapp.com/</span><br><span class="line"></span><br><span class="line">MarkdownEditor:</span><br><span class="line">MarkdownEditor 是一款基于浏览器的 Markdown 文本编辑器，功能非常简单实用。</span><br><span class="line">在线地址：https://jbt.github.io/markdown-editor/</span><br><span class="line"></span><br><span class="line">Haroopad：</span><br><span class="line">Haroopad 是一款覆盖三大主流桌面系统的编辑器，支持 Windows、Mac OS X 和 Linux。 主题样式丰富，语法标亮支持 54 种编程语言。该工具重点推荐 Ubuntu/Linux 用户使用，从此可以告别 gedit 加 Markdown 插件这种工作方式了。</span><br><span class="line">下载地址：http://pad.haroopress.com/user.html</span><br><span class="line"></span><br><span class="line">MacDown:</span><br><span class="line">MacDown引用了许多Mou的设计方式</span><br><span class="line">https://macdown.uranusjr.com/</span><br></pre></td></tr></table></figure>
-<p>Markdown语言学习小教程</p>
-<ul>
-<li><a href="https://www.appinn.com/markdown/" target="_blank" rel="noopener">Markdown 语法说明 (简体中文版)</a></li>
-<li><a href="https://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="noopener">Markdown——入门指南</a></li>
-<li><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="noopener">Markdown说明</a></li>
-</ul>
-<h4 id="该md文件在自动生成时会带有一些属性："><a href="#该md文件在自动生成时会带有一些属性：" class="headerlink" title="该md文件在自动生成时会带有一些属性："></a>该md文件在自动生成时会带有一些属性：</h4><ul>
-<li>title:     定义了博文的标题</li>
-<li>date:   定义了创作博文的时间</li>
-<li>tags:   定义了博文的标签<br>除了这个三个属性以外我们还可以扩展一些属性    ：</li>
-<li>update:  定义了最后修改的时间</li>
-<li>comments：定义能否评论此博文(默认为true)</li>
-<li>categories: 定义了博文的种类</li>
-</ul>
-<h3 id="配置文件-config-yml说明"><a href="#配置文件-config-yml说明" class="headerlink" title="配置文件_config.yml说明"></a>配置文件_config.yml说明</h3><p>Hexo的每一个功能的配置文件都是_config.yml，它在myblog根目录下。<br>具体说明看下面的注解：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Site                 ##修改以适应搜索引擎的收录</span></span><br><span class="line">title: Hexo            <span class="comment">##定义网站的标题</span></span><br><span class="line">subtitle:              <span class="comment">##定义网站的副标题</span></span><br><span class="line">description:           <span class="comment">##定义网站的描述</span></span><br><span class="line">author: jason jwl      <span class="comment">##定义网站的负责人</span></span><br><span class="line">language:              <span class="comment">##定义网站的语言,默认zh-Hans</span></span><br><span class="line">timezone:              <span class="comment">##定义网站的时区</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line">url: http://yoursite.com   <span class="comment">##定义网站访问的域名</span></span><br><span class="line">root: /      <span class="comment">##定义所在Web文件夹在哪个目录</span></span><br><span class="line">permalink: :year/:month/:day/:title/  <span class="comment">##定义时间格式</span></span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory</span></span><br><span class="line">source_dir: <span class="built_in">source</span>   <span class="comment">##定义从哪个文件夹获取博客资料</span></span><br><span class="line">public_dir: public   <span class="comment">##定义生成静态网站到哪个文件夹</span></span><br><span class="line"></span><br><span class="line">archive_dir: archives</span><br><span class="line">category_dir: categories</span><br><span class="line">code_dir: downloads/code</span><br><span class="line">i18n_dir: :lang</span><br><span class="line">skip_render:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Writing</span></span><br><span class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></span><br><span class="line">default_layout: post  </span><br><span class="line">titlecase: <span class="literal">false</span> <span class="comment"># Transform title into titlecase  </span></span><br><span class="line">external_link: <span class="literal">true</span> <span class="comment"># Open external links in new tab  </span></span><br><span class="line">filename_case: 0  </span><br><span class="line">render_drafts: <span class="literal">false</span>  </span><br><span class="line">post_asset_folder: <span class="literal">false</span>  </span><br><span class="line">relative_link: <span class="literal">false</span>  </span><br><span class="line">future: <span class="literal">true</span>  </span><br><span class="line">highlight:  </span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span>  </span><br><span class="line">  line_number: <span class="literal">true</span>  </span><br><span class="line">  auto_detect: <span class="literal">false</span>  </span><br><span class="line">  tab_replace:  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Category &amp; Tag  </span></span><br><span class="line">default_category: uncategorized  </span><br><span class="line">category_map:  </span><br><span class="line">tag_map:  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Date / Time format  </span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date  </span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in  </span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/  </span></span><br><span class="line">date_format: YYYY-MM-DD  </span><br><span class="line">time_format: HH:mm:ss  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Pagination  </span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination  </span></span><br><span class="line">per_page: 10  <span class="comment">##定义每一页多少条博客  </span></span><br><span class="line">pagination_dir: page  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Extensions  </span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/  </span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/  </span></span><br><span class="line">theme: landscape  <span class="comment">##定义使用的主题  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Deployment  </span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html  </span></span><br><span class="line">deploy:  </span><br><span class="line">  <span class="built_in">type</span>:</span><br></pre></td></tr></table></figure></p>
-<p><em>注意：另外修改这些属性时，请注意格式，属性和值要空一个格，比如 theme: landscape。</em></p>
-<h2 id="将本地博客部署到GitHub上"><a href="#将本地博客部署到GitHub上" class="headerlink" title="将本地博客部署到GitHub上"></a>将本地博客部署到GitHub上</h2><ul>
-<li><p>1、在github上new Repository，并命名为xxxxx.github.io(xxxxx是你github的账号名)，然后把本地项目提交到github的远程项目。<br> <a href="http://blog.csdn.net/jasonjwl/article/details/49682217" target="_blank" rel="noopener">具体操作步骤</a></p>
-</li>
-<li><p>2、_config.yml配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:  </span><br><span class="line"><span class="built_in">type</span>: git  </span><br><span class="line">repo: https://github.com/xxx/xxx.github.io.git  </span><br><span class="line">branch: master  </span><br><span class="line">xxx为个人github的name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>3、运行  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy  </span><br><span class="line"></span><br><span class="line">如果出现如下错误：</span><br><span class="line"> ERROR Deployer not found: git  </span><br><span class="line"></span><br><span class="line">请运行以下命令进行安装：</span><br><span class="line">$ npm install hexo-deployer-git --save </span><br><span class="line"></span><br><span class="line">再次运行hexo deploy。工程同步成功！</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>4、注意事项<br>当你增加新的文章或者插件时，可以通过以下三个命令进行同步操作：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  </span><br><span class="line">hexo generate  </span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h2><h3 id="主题更换"><a href="#主题更换" class="headerlink" title="主题更换"></a>主题更换</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;1&gt; 下载相关的主题：比如 jacman</span><br><span class="line">    下载地址：https://github.com/wuchong/jacman.git</span><br><span class="line">    在文件</span><br><span class="line">    $ <span class="built_in">cd</span> themes </span><br><span class="line">    $ git <span class="built_in">clone</span> https://github.com/wuchong/jacman.git themes/jacman</span><br><span class="line">&lt;2&gt; 在_config.ym找到 </span><br><span class="line">    theme: landscape  <span class="comment">##定义使用的主题 </span></span><br><span class="line">    替换成 theme: jacman  <span class="comment">##定义使用的主题 （注意冒号之后的空格）</span></span><br><span class="line">&lt;3&gt; 重新生成静态网页</span><br><span class="line">    	</span><br><span class="line">    $ hexo generate /** 生成一套静态网页 **/	</span><br><span class="line">    $ hexo server /** 在服务器上运行 **/</span><br><span class="line">   </span><br><span class="line">   访问或刷新页面就可以看到效果。</span><br><span class="line"></span><br><span class="line">&lt;4&gt; 修改主题的相关属性</span><br><span class="line">    * _config.ym进行修改。   </span><br><span class="line">    * img页面替换相关logo图片等</span><br></pre></td></tr></table></figure>
-<h3 id="hexo生成博文插入图片"><a href="#hexo生成博文插入图片" class="headerlink" title="hexo生成博文插入图片"></a>hexo生成博文插入图片</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第一大步：</span><br><span class="line">  1 把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  2 在你的hexo目录下执行这样一句话npm install hexo-asset-image --save，这是下载安装一个可以上传本地图片的插件，来自dalao：dalao的git</span><br><span class="line"></span><br><span class="line">  3 等待一小段时间后，再运行hexo n <span class="string">"xxxx"</span>来生成md博文时，/<span class="built_in">source</span>/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹</span><br><span class="line"></span><br><span class="line">第二大步：</span><br><span class="line"></span><br><span class="line"> 4 最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后只需要在xxxx.md中按照markdown的格式引入图片：</span><br><span class="line"></span><br><span class="line">  ![你想输入的替代文字](xxxx/图片名.jpg)</span><br><span class="line"></span><br><span class="line">  **注意：**xxxx是这个md文件的名字，也是同名文件夹的名字，你想引入的图片就只需要放入xxxx这个文件夹内就好了，很像引用相对路径。</span><br><span class="line"></span><br><span class="line"> 5 最后检查一下，hexo g生成页面后，进入public\2017\02\26\index.html文件中查看相关字段，可以发现，html标签内的语句是&lt;img src=<span class="string">"2017/02/26/xxxx/图片名.jpg"</span>&gt;，而不是&lt;img src=\<span class="string">"xxxx/图片名.jpg&gt;。这很重要，关乎你的网页是否可以真正加载你想插入的图片。</span></span><br></pre></td></tr></table></figure>
-<h3 id="备份Hexo"><a href="#备份Hexo" class="headerlink" title="备份Hexo"></a>备份Hexo</h3><p> 我们常常可能会遇到系统重装或者换电脑编辑的场景，备份变得尤为重要，这里介绍一个hexo-git-backup备份工具</p>
-<p> <a href="https://github.com/coneycode/hexo-git-backup" target="_blank" rel="noopener">备份工具</a></p>
-<p> 大家可以根据自己的实际情况，参照README.md说明进行配置</p>
-<h3 id="获取备份Hexo"><a href="#获取备份Hexo" class="headerlink" title="获取备份Hexo"></a>获取备份Hexo</h3><ul>
-<li>操作步骤1，2</li>
-<li>将Github的备份clone到本地</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git@github.com:username/username.github.io.git</span><br><span class="line">$ git checkout branchname</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>branchname:备份分支名</p>
-</blockquote>
-<h3 id="其他备份与获取方法"><a href="#其他备份与获取方法" class="headerlink" title="其他备份与获取方法"></a>其他备份与获取方法</h3><p>   可参考 (<a href="http://www.jianshu.com/p/f746f8f7b32d" target="_blank" rel="noopener">http://www.jianshu.com/p/f746f8f7b32d</a>)<br>当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：</p>
-<h5 id="恢复具体步骤"><a href="#恢复具体步骤" class="headerlink" title="恢复具体步骤"></a>恢复具体步骤</h5><p>1、先安装hexo<br>$ npm install -g hexo-cli</p>
-<p>2、存在github上的git clone下来 </p>
-<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:LJaer/ljaer.github.io</p>
-<p>3、项目文件夹下npm </p>
-<p>cd项目名/ npm install –no-bin-links </p>
-<p>$ npm install hexo-deployer-git</p>
-<p>4、重新配置github和coding的公钥</p>
-<p>注意：hexo本地测试运行重启后页面空白,提示 : WARN No layout: index.html，可能是主题文件中的文件为空。</p>
-<h2 id="有关于themes的远程代码仓库Git的同步问题"><a href="#有关于themes的远程代码仓库Git的同步问题" class="headerlink" title="有关于themes的远程代码仓库Git的同步问题"></a>有关于themes的远程代码仓库Git的同步问题</h2><h3 id="具体操作步骤"><a href="#具体操作步骤" class="headerlink" title="具体操作步骤"></a>具体操作步骤</h3><ul>
-<li>请参考 <a href="http://wenjiehe.com/2017/01/30/2017-01-30-hexo-theme-sync/" target="_blank" rel="noopener">基于Hexo的博客同步中的一些问题</a></li>
-<li>备用参考网址： <a href="https://blog.csdn.net/u010873775/article/details/71303116" target="_blank" rel="noopener">备用网址</a></li>
-</ul>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Blog配置/">Blog配置</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
   </nav>
 
 </div>
@@ -1019,7 +979,7 @@
 		  
 		
 		  
-			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>2</sup></a></li>
 		  
 		
 		  

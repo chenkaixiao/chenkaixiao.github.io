@@ -78,6 +78,64 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2018/05/10/Mac-命令行指定特定程序打开文件/" title="Mac-命令行指定特定程序打开文件" itemprop="url">Mac-命令行指定特定程序打开文件</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2018-05-10T03:39:16.000Z" itemprop="datePublished"> Published 2018-05-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>如果文件已被指定默认程序<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ open httpd.conf</span><br></pre></td></tr></table></figure></p>
+<p>指定一个特定程序打开文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用 sublime text 打开 httpd.conf</span></span><br><span class="line">$ open -a /Applications/Sublime\ Text.app/ httpd.conf</span><br></pre></td></tr></table></figure></p>
+<p>如果使用频繁，还可以添加软连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/bin/sublime</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果出现：ln: /usr/bin/sublime: Operation not permitted，请用</span></span><br><span class="line">$ sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/<span class="built_in">local</span>/bin/subl</span><br></pre></td></tr></table></figure></p>
+<p>输入sublime就可以打开 sublime text<br>输入sublime httpd.conf就可以用 sublime text 打开文件<br>如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用 sublime text 打开 PodTest.podspec</span></span><br><span class="line">$ subl PodTest.podspec</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mac/">Mac</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2018/05/09/Mac-常用指令整理/" title="Mac-常用指令整理" itemprop="url">Mac-常用指令整理</a>
   </h1>
   <p class="article-author">By
@@ -741,102 +799,9 @@ NSLog(@&quot;%@&quot;, filterdArray );
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/02/25/网络-IP种类/" title="网络-IP种类" itemprop="url">网络-IP种类</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
-		
-  <p class="article-time">
-    <time datetime="2016-02-25T13:28:08.000Z" itemprop="datePublished"> Published 2016-02-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>IP地址分为A,B,C,D,E五类。</p>
-<pre><code>网络号：用于识别主机所在的网络；
-主机号：用于识别该网络中的主机。
-
-其中A类分配给政府机关使用，B类地址给大中型企业使用，C类地址给个人使用。这三种是主要的。
-
-IP地址分为五类，A类保留给政府机构，B类分配给中等规模的公司，C类分配给任何需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同。
-
-其中A类、B类、和C类这三类地址用于TCP/IP节点，其它两类D类和E类被用于特殊用途。
-A、B、C三类IP地址的特征：当将IP地址写成二进制形式时，A类地址的第一位总是O，B类地址的前两位总是10，C类地址的前三位总是110。
-
-
-1. A类地址
-⑴ A类地址第1字节为网络地址，其它3个字节为主机地址。
-⑵ A类地址范围：1.0.0.1—126.155.255.254
-⑶ A类地址中的私有地址和保留地址：
-① 10.X.X.X是私有地址（所谓的私有地址就是在互联网上不使用，而被用在局域网络中的地址）。
-② 127.X.X.X是保留地址，用做循环测试用的。
-
-2. B类地址
-⑴ B类地址第1字节和第2字节为网络地址，其它2个字节为主机地址。
-⑵ B类地址范围：128.0.0.1—191.255.255.254。
-⑶ B类地址的私有地址和保留地址
-① 172.16.0.0—172.31.255.255是私有地址
-② 169.254.X.X是保留地址。如果你的IP地址是自动获取IP地址，而你在网络上又没有找到可用的DHCP服务器。就会得到其中一个IP。
-
-3. C类地址
-⑴ C类地址第1字节、第2字节和第3个字节为网络地址，第4个个字节为主机地址。另外第1个字节的前三位固定为110。
-⑵ C类地址范围：192.0.0.1—223.255.255.254。
-⑶ C类地址中的私有地址：
-192.168.X.X是私有地址。
-
-4. D类地址
-⑴ D类地址不分网络地址和主机地址，它的第1个字节的前四位固定为1110。
-⑵ D类地址范围：224.0.0.1—239.255.255.254
-
-5. E类地址
-⑴ E类地址也不分网络地址和主机地址，它的第1个字节的前五位固定为11110。
-⑵ E类地址范围：240.0.0.1—255.255.255.254
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/网络/">网络</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -859,7 +824,7 @@ A、B、C三类IP地址的特征：当将IP地址写成二进制形式时，A类
 		  
 		
 		  
-			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>2</sup></a></li>
 		  
 		
 		  
