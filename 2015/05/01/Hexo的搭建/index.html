@@ -51,7 +51,7 @@
 				<h1 class="site-name"><a href="/" title="陈凯晓的小麻袋">陈凯晓的小麻袋</a></h1>
 				<h2 class="blog-motto">给自己努力拾金子的理由</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -90,14 +90,14 @@
 		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
 		
   <p class="article-time">
-    <time datetime="2015-05-01T11:41:44.000Z" itemprop="datePublished"> 发表于 2015-05-01</time>
+    <time datetime="2015-05-01T11:41:44.000Z" itemprop="datePublished"> Published 2015-05-01</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建博客"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x642D;&#x5EFA;&#x535A;&#x5BA2;" class="headerlink" title="&#x642D;&#x5EFA;&#x535A;&#x5BA2;"></a>&#x642D;&#x5EFA;&#x535A;&#x5BA2;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整体流程"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x6574;&#x4F53;&#x6D41;&#x7A0B;" class="headerlink" title="&#x6574;&#x4F53;&#x6D41;&#x7A0B;"></a>&#x6574;&#x4F53;&#x6D41;&#x7A0B;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装homebrew"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;homebrew" class="headerlink" title="&#x5B89;&#x88C5;homebrew"></a>&#x5B89;&#x88C5;homebrew</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装nodejs"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;nodejs" class="headerlink" title="&#x5B89;&#x88C5;nodejs"></a>&#x5B89;&#x88C5;nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;hexo" class="headerlink" title="&#x5B89;&#x88C5;hexo"></a>&#x5B89;&#x88C5;hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建文件夹"><span class="toc-number">1.5.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;" class="headerlink" title="&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;"></a>&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用指令生成静态网页"><span class="toc-number">1.6.</span> <span class="toc-text"><a href="#&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;" class="headerlink" title="&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;"></a>&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行并部署本地博客网站"><span class="toc-number">1.7.</span> <span class="toc-text"><a href="#&#x8FD0;&#x884C;&#x5E76;&#x90E8;&#x7F72;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x7F51;&#x7AD9;" class="headerlink" title="&#x8FD0;&#x884C;&#x5E76;&#x90E8;&#x7F72;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x7F51;&#x7AD9;"></a>&#x8FD0;&#x884C;&#x5E76;&#x90E8;&#x7F72;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x7F51;&#x7AD9;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撰写博客"><span class="toc-number">1.8.</span> <span class="toc-text"><a href="#&#x64B0;&#x5199;&#x535A;&#x5BA2;" class="headerlink" title="&#x64B0;&#x5199;&#x535A;&#x5BA2;"></a>&#x64B0;&#x5199;&#x535A;&#x5BA2;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#该md文件在自动生成时会带有一些属性："><span class="toc-number">1.8.1.</span> <span class="toc-text"><a href="#&#x8BE5;md&#x6587;&#x4EF6;&#x5728;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x65F6;&#x4F1A;&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#xFF1A;" class="headerlink" title="&#x8BE5;md&#x6587;&#x4EF6;&#x5728;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x65F6;&#x4F1A;&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#xFF1A;"></a>&#x8BE5;md&#x6587;&#x4EF6;&#x5728;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x65F6;&#x4F1A;&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#xFF1A;</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件-config-yml说明"><span class="toc-number">1.9.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;&#x6587;&#x4EF6;-config-yml&#x8BF4;&#x660E;" class="headerlink" title="&#x914D;&#x7F6E;&#x6587;&#x4EF6;_config.yml&#x8BF4;&#x660E;"></a>&#x914D;&#x7F6E;&#x6587;&#x4EF6;_config.yml&#x8BF4;&#x660E;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将本地博客部署到GitHub上"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5C06;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5230;GitHub&#x4E0A;" class="headerlink" title="&#x5C06;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5230;GitHub&#x4E0A;"></a>&#x5C06;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5230;GitHub&#x4E0A;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5176;&#x4ED6;&#x8BF4;&#x660E;" class="headerlink" title="&#x5176;&#x4ED6;&#x8BF4;&#x660E;"></a>&#x5176;&#x4ED6;&#x8BF4;&#x660E;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题更换"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x4E3B;&#x9898;&#x66F4;&#x6362;" class="headerlink" title="&#x4E3B;&#x9898;&#x66F4;&#x6362;"></a>&#x4E3B;&#x9898;&#x66F4;&#x6362;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo生成博文插入图片"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#hexo&#x751F;&#x6210;&#x535A;&#x6587;&#x63D2;&#x5165;&#x56FE;&#x7247;" class="headerlink" title="hexo&#x751F;&#x6210;&#x535A;&#x6587;&#x63D2;&#x5165;&#x56FE;&#x7247;"></a>hexo&#x751F;&#x6210;&#x535A;&#x6587;&#x63D2;&#x5165;&#x56FE;&#x7247;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备份Hexo"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5907;&#x4EFD;Hexo" class="headerlink" title="&#x5907;&#x4EFD;Hexo"></a>&#x5907;&#x4EFD;Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取备份Hexo"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x83B7;&#x53D6;&#x5907;&#x4EFD;Hexo" class="headerlink" title="&#x83B7;&#x53D6;&#x5907;&#x4EFD;Hexo"></a>&#x83B7;&#x53D6;&#x5907;&#x4EFD;Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他备份与获取方法"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x5176;&#x4ED6;&#x5907;&#x4EFD;&#x4E0E;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5176;&#x4ED6;&#x5907;&#x4EFD;&#x4E0E;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;"></a>&#x5176;&#x4ED6;&#x5907;&#x4EFD;&#x4E0E;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#恢复具体步骤"><span class="toc-number">3.5.0.1.</span> <span class="toc-text"><a href="#&#x6062;&#x590D;&#x5177;&#x4F53;&#x6B65;&#x9AA4;" class="headerlink" title="&#x6062;&#x590D;&#x5177;&#x4F53;&#x6B65;&#x9AA4;"></a>&#x6062;&#x590D;&#x5177;&#x4F53;&#x6B65;&#x9AA4;</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有关于themes的远程代码仓库Git的同步问题"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x6709;&#x5173;&#x4E8E;themes&#x7684;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;Git&#x7684;&#x540C;&#x6B65;&#x95EE;&#x9898;" class="headerlink" title="&#x6709;&#x5173;&#x4E8E;themes&#x7684;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;Git&#x7684;&#x540C;&#x6B65;&#x95EE;&#x9898;"></a>&#x6709;&#x5173;&#x4E8E;themes&#x7684;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;Git&#x7684;&#x540C;&#x6B65;&#x95EE;&#x9898;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#具体操作步骤"><span class="toc-number">4.1.</span> <span class="toc-text"><a href="#&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;" class="headerlink" title="&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;"></a>&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;</span></a></li></ol></li></ol>
 		
@@ -228,17 +228,17 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建博客"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x642D;&#x5EFA;&#x535A;&#x5BA2;" class="headerlink" title="&#x642D;&#x5EFA;&#x535A;&#x5BA2;"></a>&#x642D;&#x5EFA;&#x535A;&#x5BA2;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整体流程"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x6574;&#x4F53;&#x6D41;&#x7A0B;" class="headerlink" title="&#x6574;&#x4F53;&#x6D41;&#x7A0B;"></a>&#x6574;&#x4F53;&#x6D41;&#x7A0B;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装homebrew"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;homebrew" class="headerlink" title="&#x5B89;&#x88C5;homebrew"></a>&#x5B89;&#x88C5;homebrew</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装nodejs"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;nodejs" class="headerlink" title="&#x5B89;&#x88C5;nodejs"></a>&#x5B89;&#x88C5;nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;hexo" class="headerlink" title="&#x5B89;&#x88C5;hexo"></a>&#x5B89;&#x88C5;hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建文件夹"><span class="toc-number">1.5.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;" class="headerlink" title="&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;"></a>&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用指令生成静态网页"><span class="toc-number">1.6.</span> <span class="toc-text"><a href="#&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;" class="headerlink" title="&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;"></a>&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行并部署本地博客网站"><span class="toc-number">1.7.</span> <span class="toc-text"><a href="#&#x8FD0;&#x884C;&#x5E76;&#x90E8;&#x7F72;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x7F51;&#x7AD9;" class="headerlink" title="&#x8FD0;&#x884C;&#x5E76;&#x90E8;&#x7F72;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x7F51;&#x7AD9;"></a>&#x8FD0;&#x884C;&#x5E76;&#x90E8;&#x7F72;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x7F51;&#x7AD9;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撰写博客"><span class="toc-number">1.8.</span> <span class="toc-text"><a href="#&#x64B0;&#x5199;&#x535A;&#x5BA2;" class="headerlink" title="&#x64B0;&#x5199;&#x535A;&#x5BA2;"></a>&#x64B0;&#x5199;&#x535A;&#x5BA2;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#该md文件在自动生成时会带有一些属性："><span class="toc-number">1.8.1.</span> <span class="toc-text"><a href="#&#x8BE5;md&#x6587;&#x4EF6;&#x5728;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x65F6;&#x4F1A;&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#xFF1A;" class="headerlink" title="&#x8BE5;md&#x6587;&#x4EF6;&#x5728;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x65F6;&#x4F1A;&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#xFF1A;"></a>&#x8BE5;md&#x6587;&#x4EF6;&#x5728;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x65F6;&#x4F1A;&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#xFF1A;</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件-config-yml说明"><span class="toc-number">1.9.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;&#x6587;&#x4EF6;-config-yml&#x8BF4;&#x660E;" class="headerlink" title="&#x914D;&#x7F6E;&#x6587;&#x4EF6;_config.yml&#x8BF4;&#x660E;"></a>&#x914D;&#x7F6E;&#x6587;&#x4EF6;_config.yml&#x8BF4;&#x660E;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将本地博客部署到GitHub上"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5C06;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5230;GitHub&#x4E0A;" class="headerlink" title="&#x5C06;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5230;GitHub&#x4E0A;"></a>&#x5C06;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5230;GitHub&#x4E0A;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5176;&#x4ED6;&#x8BF4;&#x660E;" class="headerlink" title="&#x5176;&#x4ED6;&#x8BF4;&#x660E;"></a>&#x5176;&#x4ED6;&#x8BF4;&#x660E;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题更换"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x4E3B;&#x9898;&#x66F4;&#x6362;" class="headerlink" title="&#x4E3B;&#x9898;&#x66F4;&#x6362;"></a>&#x4E3B;&#x9898;&#x66F4;&#x6362;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo生成博文插入图片"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#hexo&#x751F;&#x6210;&#x535A;&#x6587;&#x63D2;&#x5165;&#x56FE;&#x7247;" class="headerlink" title="hexo&#x751F;&#x6210;&#x535A;&#x6587;&#x63D2;&#x5165;&#x56FE;&#x7247;"></a>hexo&#x751F;&#x6210;&#x535A;&#x6587;&#x63D2;&#x5165;&#x56FE;&#x7247;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备份Hexo"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5907;&#x4EFD;Hexo" class="headerlink" title="&#x5907;&#x4EFD;Hexo"></a>&#x5907;&#x4EFD;Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取备份Hexo"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x83B7;&#x53D6;&#x5907;&#x4EFD;Hexo" class="headerlink" title="&#x83B7;&#x53D6;&#x5907;&#x4EFD;Hexo"></a>&#x83B7;&#x53D6;&#x5907;&#x4EFD;Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他备份与获取方法"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x5176;&#x4ED6;&#x5907;&#x4EFD;&#x4E0E;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5176;&#x4ED6;&#x5907;&#x4EFD;&#x4E0E;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;"></a>&#x5176;&#x4ED6;&#x5907;&#x4EFD;&#x4E0E;&#x83B7;&#x53D6;&#x65B9;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#恢复具体步骤"><span class="toc-number">3.5.0.1.</span> <span class="toc-text"><a href="#&#x6062;&#x590D;&#x5177;&#x4F53;&#x6B65;&#x9AA4;" class="headerlink" title="&#x6062;&#x590D;&#x5177;&#x4F53;&#x6B65;&#x9AA4;"></a>&#x6062;&#x590D;&#x5177;&#x4F53;&#x6B65;&#x9AA4;</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有关于themes的远程代码仓库Git的同步问题"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x6709;&#x5173;&#x4E8E;themes&#x7684;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;Git&#x7684;&#x540C;&#x6B65;&#x95EE;&#x9898;" class="headerlink" title="&#x6709;&#x5173;&#x4E8E;themes&#x7684;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;Git&#x7684;&#x540C;&#x6B65;&#x95EE;&#x9898;"></a>&#x6709;&#x5173;&#x4E8E;themes&#x7684;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;Git&#x7684;&#x540C;&#x6B65;&#x95EE;&#x9898;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#具体操作步骤"><span class="toc-number">4.1.</span> <span class="toc-text"><a href="#&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;" class="headerlink" title="&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;"></a>&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -246,7 +246,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -283,7 +283,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -295,7 +295,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -317,11 +317,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -560,7 +560,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
