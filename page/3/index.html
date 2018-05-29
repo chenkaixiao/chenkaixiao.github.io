@@ -78,6 +78,139 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/05/03/iOS-Pods使用常见问题/" title="iOS-Pods使用常见问题" itemprop="url">iOS-Pods使用常见问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-03T03:00:17.000Z" itemprop="datePublished"> Published 2015-05-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ul>
+<li><p>常见问题一：突然pods中得链接失灵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设置 Project-&gt;Info-&gt;Configurations之后  clear ,然后再编译 </span><br><span class="line">在Configurations里面吧Debug 和Release的Tests 的None改为pods</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>常见问题二：出现Unable to find a pod with name, author, summary, or description matching解决方法 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm ~/Library/Caches/CocoaPods/search_index.json</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>有待更新。。。。。 </em> </p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CocoaPods/">CocoaPods</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/03/iOS-微信分享SDK常见问题/" title="iOS-微信分享SDK常见问题" itemprop="url">iOS-微信分享SDK常见问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-03T02:22:52.000Z" itemprop="datePublished"> Published 2015-05-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="问题一-在模拟器中"><a href="#问题一-在模拟器中" class="headerlink" title="问题一 在模拟器中"></a>问题一 在模拟器中</h3><ul>
+<li>在Xcode中出现：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Undefined symbols for architecture i386:   &quot;_OBJC_CLASS_$_WXApi&quot;, referenced from:  </span><br><span class="line">objc-class-ref in AppDelegate.o ld: symbol(s) not found for architectur</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>求助StackOverflow也存在类似问题：<br><code>missing required architecture x86_64 in file /Users/zt1370/Desktop/2014-3-20 2/edooongps/EdooonGPS/libWeiboSDK.a</code></p>
+<p>原因：<br><code>链接错误，ibWeiboSDK.a 打包链接是32bit architecture</code></p>
+</li>
+<li><p>最终解决方案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">方法1</span><br><span class="line">   刚去微信公众平台下载demo源码，编译正常。于是build setting-&gt;architecture-&gt;other-&gt;复制$   </span><br><span class="line">   (ARCHS_STANDARD_32_BIT)复制内容加在自己项目target build setting-&gt;architecture</span><br><span class="line">   再构建应该成功了 </span><br><span class="line">方法2</span><br><span class="line"> valid architectures去掉arm64 也行。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="问题二-在真机调试中"><a href="#问题二-在真机调试中" class="headerlink" title="问题二 在真机调试中"></a>问题二 在真机调试中</h3><blockquote>
+<p>如果微信的SDK在工作空间的环境下使用并在工程配置文件的 Other Linker Flags 中设置了  <em>-all_load</em>,<br>  那么会真机编译时产生编译错误,由于真机需要的一些64位的库加载失败,那么这时就不要使用-all_load了,改用 <em>-force_load</em></p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/02/iOS-学习路线图/" title="iOS-学习路线图" itemprop="url">iOS-学习路线图</a>
   </h1>
   <p class="article-author">By
@@ -285,7 +418,7 @@
 		  
 		
 		  
-			<li><a href="/categories/CocoaPods/" title="CocoaPods">CocoaPods<sup>2</sup></a></li>
+			<li><a href="/categories/CocoaPods/" title="CocoaPods">CocoaPods<sup>3</sup></a></li>
 		  
 		
 		  
@@ -301,7 +434,7 @@
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>11</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>12</sup></a></li>
 		  
 		
 		  

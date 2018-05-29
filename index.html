@@ -78,6 +78,61 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2018/05/26/iOS-高级进价知识体系架构图/" title="iOS高级进价知识体系架构图" itemprop="url">iOS高级进价知识体系架构图</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2018-05-26T07:56:01.000Z" itemprop="datePublished"> Published 2018-05-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p> <img src="/2018/05/26/iOS-高级进价知识体系架构图/iOS-高级进价知识体系架构图.png" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2018/05/10/Mac-命令行指定特定程序打开文件/" title="Mac-命令行指定特定程序打开文件" itemprop="url">Mac-命令行指定特定程序打开文件</a>
   </h1>
   <p class="article-author">By
@@ -688,117 +743,6 @@ NSLog(@&quot;%@&quot;, filterdArray );
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/03/25/iOS-Block认识/" title="iOS-Block认识" itemprop="url">iOS-Block认识</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
-		
-  <p class="article-time">
-    <time datetime="2017-03-25T09:11:19.000Z" itemprop="datePublished"> Published 2017-03-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="块的基础知识"><a href="#块的基础知识" class="headerlink" title="块的基础知识"></a>块的基础知识</h2><h3 id="块的定义"><a href="#块的定义" class="headerlink" title="块的定义"></a>块的定义</h3><ul>
-<li><p>什么是块</p>
-<blockquote>
-<p>块是C、C++、Object-C中的词法闭包。<br>块是用“^”符号来表示，后面跟着一对花括号，括号里面就是块的实现代码。<br>块可以有返回值和传入参数</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">最简单如：</span><br><span class="line">^&#123;</span><br><span class="line">  // block 实现</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">有如：</span><br><span class="line">void (^someBlock)() = ^&#123; </span><br><span class="line">  // block 实现</span><br><span class="line">&#125;</span><br><span class="line">有如：</span><br><span class="line">int (^addBlock)(int a,int b)=^(int a,int b)&#123;</span><br><span class="line">   return a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">有如（捕获并修改外部变量，外部变量需__block修饰）：</span><br><span class="line">NSArray *array = @[@0,@1,@2,@3,@4];</span><br><span class="line">__block NSinteger count = 0;</span><br><span class="line">[array enumerateObjectsUsingBlock:^(NSNumber *number,NSUInteger idx,Bool *stop)&#123;</span><br><span class="line">     if([Number compare:@2] == NSOrderedAscending)&#123;</span><br><span class="line">        count++;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;];</span><br><span class="line"> </span><br><span class="line">// count = 2</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="块的内部结构"><a href="#块的内部结构" class="headerlink" title="块的内部结构"></a>块的内部结构</h3><p>  每个OC对象都占据着某个内存区域。块本身也是对象，在存放块对象的内存区域汇总，首个变量是指向Class对象的指针，该指针叫做isa。</p>
-<p>  如下图是块对象的的内存布局：</p>
-<p> <img src="/2017/03/25/iOS-Block认识/iOS-Block.png" alt=""></p>
-<p>块成员变量解析：</p>
-<ul>
-<li>isa：指向块，代表块。</li>
-<li>invoke: 是函数指针，指向块的实现代码，最重要成员变量。</li>
-<li>descriptor: 指向结构体的指针，每个块里面都包含此结构体</li>
-<li>捕获变量区： 用于存放捕获外部变量的内存区域。</li>
-</ul>
-<p>块的描述符decriptor成员解析：</p>
-<ul>
-<li>size:表示块对象的总体大小。</li>
-<li>copy:辅助函数对应的函数指针,用于拷贝块对象运行，保留捕获对象。</li>
-<li>dipose:辅助函数对应的函数指针,用于丢弃块对象运行，释放捕获的对象。</li>
-</ul>
-<blockquote>
-<p>invoke函数将块对象（void*）参数传入，原因在执行块时，要从内存读取捕获的变量。</p>
-</blockquote>
-<h3 id="全局块、栈块及堆块"><a href="#全局块、栈块及堆块" class="headerlink" title="全局块、栈块及堆块"></a>全局块、栈块及堆块</h3><blockquote>
-<p>为什么会有全局块、栈块及堆块?请看一下分析。</p>
-</blockquote>
-<ul>
-<li>栈块与堆块<br>定义的块时候，其所占的内存区域是分配在栈区中。<br>如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void (^block)();</span><br><span class="line">if(condition)&#123;</span><br><span class="line">   // 修改前</span><br><span class="line">   block = ^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock A&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   // 修改之后</span><br><span class="line">    block = [^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock A&quot;);</span><br><span class="line">   &#125; copy]</span><br><span class="line">   </span><br><span class="line">&#125;else(condition)&#123;</span><br><span class="line">   // 修改前</span><br><span class="line">   block = ^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock B&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   // 修改之后</span><br><span class="line">    block = []^()&#123;</span><br><span class="line">     NSLog(@&quot;BLock B&quot;);</span><br><span class="line">   &#125; copy]</span><br><span class="line">&#125;</span><br><span class="line">block();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这里代码存在很大的风险，if与else中的block是分配到栈中，它们只在相应的范围有效，离开那个范围之后，编译随时可能把分配给块的内存回收。</p>
-<p>为了解决这个问题，<em>应该对if与else的block进行copy,把他们拷贝到堆内存区域中，这样他们就可以在它们作用范围之外工作了</em>。</p>
-<blockquote>
-<p>block一旦执行拷贝到堆内存区域上，它就成了带有引用计数的对象，后续的拷贝只是计数器+1.<br>MRC中需要手动管理内存。</p>
-</blockquote>
-<ul>
-<li>全局块<blockquote>
-<p>全局块是在编译期就确定<br>全局块可以声明在全局内存区域<br>全局块执行拷贝操作是个空操作<br>全局块不能为系统所回收<br>全局块相当一个单例</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
-<li>块是C/C++/Object-C的词法闭包</li>
-<li>块可以接受参数，也可以返回值</li>
-<li>块是分配在栈、堆或全局区域。分配在栈上的块可以拷贝到堆里。</li>
-</ul>
-<h2 id="块的使用"><a href="#块的使用" class="headerlink" title="块的使用"></a>块的使用</h2><h3 id="使用typedef定义别名"><a href="#使用typedef定义别名" class="headerlink" title="使用typedef定义别名"></a>使用typedef定义别名</h3><p>有待更新</p>
-<h3 id="利用块降低代码分散度"><a href="#利用块降低代码分散度" class="headerlink" title="利用块降低代码分散度"></a>利用块降低代码分散度</h3><p>有待更新</p>
-<h2 id="防止块使用出现引用循环"><a href="#防止块使用出现引用循环" class="headerlink" title="防止块使用出现引用循环"></a>防止块使用出现引用循环</h2><p>有待更新</p>
-<p>参考：</p>
-<ul>
-<li>Effective Objective-C 2.0</li>
-</ul>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -824,7 +768,7 @@ NSLog(@&quot;%@&quot;, filterdArray );
 		  
 		
 		  
-			<li><a href="/categories/CocoaPods/" title="CocoaPods">CocoaPods<sup>2</sup></a></li>
+			<li><a href="/categories/CocoaPods/" title="CocoaPods">CocoaPods<sup>3</sup></a></li>
 		  
 		
 		  
@@ -840,7 +784,7 @@ NSLog(@&quot;%@&quot;, filterdArray );
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>11</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>12</sup></a></li>
 		  
 		
 		  
