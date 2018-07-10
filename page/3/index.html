@@ -78,6 +78,150 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/05/25/iOS-测试代码运行时间/" title="iOS-测试代码运行时间" itemprop="url">iOS-测试代码运行时间</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-25T02:49:23.000Z" itemprop="datePublished"> Published 2015-05-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ul>
+<li><p>方法一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSDate* tmpStartData = [[NSDate date] retain];</span><br><span class="line">//You code here...</span><br><span class="line">double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];</span><br><span class="line">NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;cost time = %f ms&quot;, deltaTime*1000);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> #import &lt;mach/mach_time.h&gt;</span><br><span class="line"></span><br><span class="line">uint64_t start = mach_absolute_time();</span><br><span class="line">//You code here...</span><br><span class="line">uint64_t end = mach_absolute_time();</span><br><span class="line">uint64_t elapsed = end - start；</span><br><span class="line">NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;cost time = %d ms&quot;, elapsed*1000);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/15/iOS-常用第三方库/" title="iOS-常用第三方库" itemprop="url">iOS-常用第三方库</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-15T15:02:10.000Z" itemprop="datePublished"> Published 2015-05-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="常用库"><a href="#常用库" class="headerlink" title="常用库"></a>常用库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">GTMBase64 base64编码解码</span><br><span class="line">TouchXML xml解析</span><br><span class="line"></span><br><span class="line">SSKeychain</span><br><span class="line">SAMKeychain 安全保存用户密码到keychain中，SSKeychain的替代品</span><br><span class="line"></span><br><span class="line">ASIHTTPRequest http等相关协议封装,非常强大的开源框架，已停止更新。</span><br><span class="line">AFNetworking http等相关协议封装,网络相关请求框架。</span><br><span class="line"></span><br><span class="line">MJRefresh 下拉刷新与上拉加载的库,是MJ封装比较好一个开源库。</span><br><span class="line">AsyncImageView 异步加载图片并缓存代码</span><br><span class="line">类似setting的竖立也分栏程序 </span><br><span class="line"></span><br><span class="line">VTMagic -- 模仿写出类似网易、腾讯等应用的菜单分页组件</span><br><span class="line"></span><br><span class="line">MBProgressHUD——进展指示符库，很棒的一个加载等待特效框架</span><br><span class="line">SVProgressHUD--圆圈进度指示符库，比MBProgressHUD还要高端一点。</span><br><span class="line"></span><br><span class="line">ZRPopoverView -- 模仿ipad的UIPoverViewController</span><br><span class="line"></span><br><span class="line">DZNEmptyDataSet</span><br><span class="line">CYLTableViewPlaceHolder  --  UITableView为空数据显示</span><br><span class="line"></span><br><span class="line">pop -- 非常优秀的动画库</span><br><span class="line"></span><br><span class="line">IQKeyboardManager -- *『零行代码』解决键盘遮挡问题*</span><br><span class="line"></span><br><span class="line">Flurry——详尽的使用统计</span><br><span class="line">CorePlot——2D图形绘图仪</span><br><span class="line">GData client——iPhone上所有Google相关服务的类库</span><br><span class="line">SDWebImage——简化网络图片处理</span><br><span class="line">RegexKitLite——正则表达式支持</span><br><span class="line"></span><br><span class="line">YYKit -- 90后大神写的集成开发包。</span><br><span class="line"></span><br><span class="line">NerdyUI -- 最好用的 iOS 快速布局UI库</span><br><span class="line">Masonry -- OC版自动布局相关库。snapkit (Swift版)</span><br><span class="line">MyLayout-- 犹如Android的相对布局等相关库</span><br><span class="line"></span><br><span class="line">XMPPFramework-- xmpp</span><br><span class="line">ZipArchive -- zip压缩与解压</span><br><span class="line">FMDB -- SQlite3的封装</span><br><span class="line">CocoaAsyncSocket -- 异步Socket的封装</span><br><span class="line">CocoaHTTPServer -- 搭建HTTP服务端</span><br><span class="line"></span><br><span class="line">PonyDebugger --开发和调试工具,可以在电脑浏览器上远程调试iOS程序、查看试图层次、网络等等。CocoaLumberjack是个Log工  具，号称是可以提供企业级Log</span><br></pre></td></tr></table></figure>
+<h3 id="扫描wifi信息："><a href="#扫描wifi信息：" class="headerlink" title="扫描wifi信息："></a>扫描wifi信息：</h3><p><a href="http://code.google.com/p/uwecaugmentedrealityproject/" target="_blank" rel="noopener">http://code.google.com/p/uwecaugmentedrealityproject/</a><br><a href="http://code.google.com/p/iphone-wireless/" target="_blank" rel="noopener">http://code.google.com/p/iphone-wireless/</a></p>
+<h3 id="条形码扫描："><a href="#条形码扫描：" class="headerlink" title="条形码扫描："></a>条形码扫描：</h3><p><a href="http://zbar.sourceforge.net/iphone/sdkdoc/install.html" target="_blank" rel="noopener">http://zbar.sourceforge.net/iphone/sdkdoc/install.html</a></p>
+<h3 id="720全景显示panoramagl"><a href="#720全景显示panoramagl" class="headerlink" title="720全景显示panoramagl"></a>720全景显示panoramagl</h3><p><a href="http://code.google.com/p/panoramagl/" target="_blank" rel="noopener">http://code.google.com/p/panoramagl/</a></p>
+<h3 id="其他人整理的资料"><a href="#其他人整理的资料" class="headerlink" title="其他人整理的资料"></a>其他人整理的资料</h3><ul>
+<li><p>iOS超全开源框架、项目和学习资料汇总–数据库、缓存处理、图像浏览、摄像照相视频音频篇<br> <a href="http://www.cocoachina.com/ios/20170215/18692.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20170215/18692.html</a></p>
+</li>
+<li><p>UITableViewCell多种滑动变化及动画效果 Airbnb家的开源动画库<br><a href="http://www.cocoachina.com/ios/20170222/18744.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20170222/18744.html</a></p>
+</li>
+<li><p>字幕滚动 第三方框架 Wonderful  （包含富文本）<br><a href="http://www.cocoachina.com/ios/20170222/18744.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20170222/18744.html</a></p>
+</li>
+<li><p>汇集了相当多的第三方框架的总结<br><a href="http://www.2cto.com/kf/201603/496589.html" target="_blank" rel="noopener">http://www.2cto.com/kf/201603/496589.html</a></p>
+</li>
+<li><p>一个收集了502款开源iOS应用的开源项目<br><a href="http://www.cocoachina.com/ios/20160714/17045.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20160714/17045.html</a></p>
+</li>
+<li><p>iOS干货快速集成搜索界面<em>下拉菜单框架</em><br><a href="http://www.cocoachina.com/ios/20160901/17449.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20160901/17449.html</a></p>
+</li>
+<li><p>Swift 高级库<br><a href="http://www.cocoachina.com/swift/20160525/16437.html" target="_blank" rel="noopener">http://www.cocoachina.com/swift/20160525/16437.html</a></p>
+</li>
+<li><p>封装 fmdb 类似hibernate<br><a href="http://www.cocoachina.com/ios/20160531/16507.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20160531/16507.html</a> </p>
+</li>
+<li><p>用于iOS开发的各种开源库、开源资料、开源技术等等的索引库【厉害了大神】<br><a href="https://github.com/Tim9Liu9/TimLiu-iOS#WebView%E4%B8%8EWKWebView" target="_blank" rel="noopener">https://github.com/Tim9Liu9/TimLiu-iOS#WebView%E4%B8%8EWKWebView</a></p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/第三方库/">第三方库</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/11/Pod-私有库更新和管理所遇到的奇葩问题/" title="Pod-私有库更新和管理所遇到的奇葩问题" itemprop="url">Pod-私有库更新和管理所遇到的奇葩问题</a>
   </h1>
   <p class="article-author">By
@@ -693,7 +837,11 @@
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>13</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/流媒体服务器/" title="流媒体服务器">流媒体服务器<sup>1</sup></a></li>
 		  
 		
 		  

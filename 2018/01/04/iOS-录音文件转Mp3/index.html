@@ -1,0 +1,530 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS-录音文件转Mp3 | 陈凯晓的小麻袋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jackit">
+    
+
+    
+    <meta name="description" content="公司最近有这么个需求，将iOS的话筒录制的音频上传到服务端，同时为了兼顾Android和前端的统一支持mp3音频文件格式，iOS录制生成的音频文件是caf格式，并且录制完的音频也是比较大，转码速度比较久。故采用了lame库进行边录制边转码成mp3方案。  caf转mp3声明录音AVAudioRecorder对象1@property (strong, nonatomic) AVAudioRecor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-录音文件转Mp3">
+<meta property="og:url" content="http://yoursite.com/2018/01/04/iOS-录音文件转Mp3/index.html">
+<meta property="og:site_name" content="陈凯晓的小麻袋">
+<meta property="og:description" content="公司最近有这么个需求，将iOS的话筒录制的音频上传到服务端，同时为了兼顾Android和前端的统一支持mp3音频文件格式，iOS录制生成的音频文件是caf格式，并且录制完的音频也是比较大，转码速度比较久。故采用了lame库进行边录制边转码成mp3方案。  caf转mp3声明录音AVAudioRecorder对象1@property (strong, nonatomic) AVAudioRecor">
+<meta property="og:updated_time" content="2018-07-10T03:13:21.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-录音文件转Mp3">
+<meta name="twitter:description" content="公司最近有这么个需求，将iOS的话筒录制的音频上传到服务端，同时为了兼顾Android和前端的统一支持mp3音频文件格式，iOS录制生成的音频文件是caf格式，并且录制完的音频也是比较大，转码速度比较久。故采用了lame库进行边录制边转码成mp3方案。  caf转mp3声明录音AVAudioRecorder对象1@property (strong, nonatomic) AVAudioRecor">
+
+    
+    <link rel="alternative" href="/atom.xml" title="陈凯晓的小麻袋" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="陈凯晓的小麻袋" title="陈凯晓的小麻袋"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="陈凯晓的小麻袋">陈凯晓的小麻袋</a></h1>
+				<h2 class="blog-motto">给自己努力拾金子的理由</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+                    
+                    
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" class="st-default-search-input" maxlength="20" placeholder="Search" />
+						</form>
+ 					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/01/04/iOS-录音文件转Mp3/" title="iOS-录音文件转Mp3" itemprop="url">iOS-录音文件转Mp3</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jackit" target="_blank" itemprop="author">Jackit</a>
+		
+  <p class="article-time">
+    <time datetime="2018-01-04T02:23:41.000Z" itemprop="datePublished"> Published 2018-01-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#caf转mp3"><span class="toc-number">1.</span> <span class="toc-text"><a href="#caf&#x8F6C;mp3" class="headerlink" title="caf&#x8F6C;mp3"></a>caf&#x8F6C;mp3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#声明录音AVAudioRecorder对象"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x58F0;&#x660E;&#x5F55;&#x97F3;AVAudioRecorder&#x5BF9;&#x8C61;" class="headerlink" title="&#x58F0;&#x660E;&#x5F55;&#x97F3;AVAudioRecorder&#x5BF9;&#x8C61;"></a>&#x58F0;&#x660E;&#x5F55;&#x97F3;AVAudioRecorder&#x5BF9;&#x8C61;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAF转换MP3相关配置"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#CAF&#x8F6C;&#x6362;MP3&#x76F8;&#x5173;&#x914D;&#x7F6E;" class="headerlink" title="CAF&#x8F6C;&#x6362;MP3&#x76F8;&#x5173;&#x914D;&#x7F6E;"></a>CAF&#x8F6C;&#x6362;MP3&#x76F8;&#x5173;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动录音"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x542F;&#x52A8;&#x5F55;&#x97F3;" class="headerlink" title="&#x542F;&#x52A8;&#x5F55;&#x97F3;"></a>&#x542F;&#x52A8;&#x5F55;&#x97F3;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#边录音边转码"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x8FB9;&#x5F55;&#x97F3;&#x8FB9;&#x8F6C;&#x7801;" class="headerlink" title="&#x8FB9;&#x5F55;&#x97F3;&#x8FB9;&#x8F6C;&#x7801;"></a>&#x8FB9;&#x5F55;&#x97F3;&#x8FB9;&#x8F6C;&#x7801;</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>公司最近有这么个需求，将iOS的话筒录制的音频上传到服务端，同时为了兼顾Android和前端的统一支持mp3音频文件格式，iOS录制生成的音频文件是caf格式，并且录制完的音频也是比较大，转码速度比较久。故采用了lame库进行边录制边转码成mp3方案。</p>
+</blockquote>
+<h2 id="caf转mp3"><a href="#caf转mp3" class="headerlink" title="caf转mp3"></a>caf转mp3</h2><h3 id="声明录音AVAudioRecorder对象"><a href="#声明录音AVAudioRecorder对象" class="headerlink" title="声明录音AVAudioRecorder对象"></a>声明录音AVAudioRecorder对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property (strong, nonatomic) AVAudioRecorder *recorder;</span><br></pre></td></tr></table></figure>
+<h3 id="CAF转换MP3相关配置"><a href="#CAF转换MP3相关配置" class="headerlink" title="CAF转换MP3相关配置"></a>CAF转换MP3相关配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-(NSDictionary *)audioRecordingSettings&#123;</span><br><span class="line">    NSDictionary *setting = [NSDictionary dictionaryWithObjectsAndKeys:</span><br><span class="line">                             [NSNumber numberWithInt:AVAudioQualityMin],</span><br><span class="line">                             AVEncoderAudioQualityKey,</span><br><span class="line">                             [NSNumber numberWithInt:16],</span><br><span class="line">                             AVEncoderBitRateKey,</span><br><span class="line">                             [NSNumber numberWithInt:2],</span><br><span class="line">                             AVNumberOfChannelsKey,</span><br><span class="line">                             [NSNumber numberWithFloat:44100.0],</span><br><span class="line">                             AVSampleRateKey,</span><br><span class="line">                             nil];</span><br><span class="line">    </span><br><span class="line">    return setting;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启动录音"><a href="#启动录音" class="headerlink" title="启动录音"></a>启动录音</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - caf转mp3</span><br><span class="line">// 开启线程边录制边转mp3</span><br><span class="line">-(void)startConvertCafToMp3:(NSString *)cafPath&#123;</span><br><span class="line">    __weak typeof(self)weakSelf = self;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        if(weakSelf.callback)&#123;</span><br><span class="line">            NSString *fileStr = [weakSelf audioCAFtoMP3:weakSelf.recorder.url.relativePath];</span><br><span class="line">            dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">                if(fileStr)&#123;</span><br><span class="line">                    weakSelf.callback(YASAudioRecorderStatusFinish,[NSURL fileURLWithPath:fileStr]);</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    weakSelf.callback(YASAudioRecorderStatusMp3EncodeError,nil);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="边录音边转码"><a href="#边录音边转码" class="headerlink" title="边录音边转码"></a>边录音边转码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)audioCAFtoMP3:(NSString *)cafPath &#123;</span><br><span class="line">    </span><br><span class="line">    NSString *cafFilePath = cafPath;</span><br><span class="line">    NSString *mp3FilePath = [NSString stringWithFormat:@&quot;%@.mp3&quot;,[NSString stringWithFormat:@&quot;%@&quot;,[cafFilePath substringToIndex:cafFilePath.length - 4]]];</span><br><span class="line">    @try &#123;</span><br><span class="line">        int read, write;</span><br><span class="line">        </span><br><span class="line">        FILE *pcm = fopen([cafFilePath cStringUsingEncoding:NSUTF8StringEncoding], &quot;rb&quot;);  //source 被转换的音频文件位置</span><br><span class="line">        FILE *mp3 = fopen([mp3FilePath cStringUsingEncoding:NSUTF8StringEncoding], &quot;wb&quot;);  //output 输出生成的Mp3文件位置</span><br><span class="line">        </span><br><span class="line">        const int PCM_SIZE = 8192;</span><br><span class="line">        const int MP3_SIZE = 8192;</span><br><span class="line">        short int pcm_buffer[PCM_SIZE*2];</span><br><span class="line">        unsigned char mp3_buffer[MP3_SIZE];</span><br><span class="line">        </span><br><span class="line">        lame_t lame = lame_init();</span><br><span class="line">        lame_set_num_channels(lame,1);//设置1为单通道，默认为2双通道</span><br><span class="line">        lame_set_in_samplerate(lame, 44100.0);</span><br><span class="line">        lame_set_VBR(lame, vbr_default);</span><br><span class="line">        </span><br><span class="line">        lame_set_brate(lame,8);</span><br><span class="line">        </span><br><span class="line">        lame_set_mode(lame,3);</span><br><span class="line">        </span><br><span class="line">        lame_set_quality(lame,2);</span><br><span class="line">        </span><br><span class="line">        lame_init_params(lame);</span><br><span class="line">        </span><br><span class="line">        long curpos;</span><br><span class="line">        BOOL isSkipPCMHeader = NO;</span><br><span class="line">        </span><br><span class="line">        do &#123;</span><br><span class="line">            </span><br><span class="line">            curpos = ftell(pcm);</span><br><span class="line">            </span><br><span class="line">            long startPos = ftell(pcm);</span><br><span class="line">            </span><br><span class="line">            fseek(pcm, 0, SEEK_END);</span><br><span class="line">            long endPos = ftell(pcm);</span><br><span class="line">            </span><br><span class="line">            long length = endPos - startPos;</span><br><span class="line">            </span><br><span class="line">            fseek(pcm, curpos, SEEK_SET);</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            if (length &gt; PCM_SIZE * 2 * sizeof(short int)) &#123;</span><br><span class="line">                </span><br><span class="line">                if (!isSkipPCMHeader) &#123;</span><br><span class="line">                    //Uump audio file header, If you do not skip file header</span><br><span class="line">                    //you will heard some noise at the beginning!!!</span><br><span class="line">                    // fseek(pcm, 4 * 1024, SEEK_SET);</span><br><span class="line">                    fseek(pcm, 4*1024, SEEK_CUR);  //skip file header</span><br><span class="line">                    isSkipPCMHeader = YES;</span><br><span class="line">                    LKLogDebug(@&quot;skip pcm file header !!!!!!!!!!&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                read = (int)fread(pcm_buffer, 2 * sizeof(short int), PCM_SIZE, pcm);</span><br><span class="line">                write = lame_encode_buffer_interleaved(lame, pcm_buffer, read, mp3_buffer, MP3_SIZE);</span><br><span class="line">                fwrite(mp3_buffer, write, 1, mp3);</span><br><span class="line">                LKLogDebug(@&quot;read %d bytes&quot;, write);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            else &#123;</span><br><span class="line">                </span><br><span class="line">                [NSThread sleepForTimeInterval:0.05];</span><br><span class="line">                LKLogDebug(@&quot;sleep&quot;);</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125; while (self.recorder.isRecording);</span><br><span class="line">        read = (int)fread(pcm_buffer, 2 * sizeof(short int), PCM_SIZE, pcm);</span><br><span class="line">        write = lame_encode_flush(lame, mp3_buffer, MP3_SIZE);</span><br><span class="line">        LKLogDebug(@&quot;read %d bytes and flush to mp3 file&quot;, write);</span><br><span class="line">        </span><br><span class="line">        lame_close(lame);</span><br><span class="line">        fclose(mp3);</span><br><span class="line">        fclose(pcm);</span><br><span class="line">    &#125;</span><br><span class="line">    @catch (NSException *exception) &#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;,[exception description]);</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">    @finally &#123;</span><br><span class="line">        return mp3FilePath;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  参考的链接</p>
+<ul>
+<li><p><a href="https://www.jianshu.com/p/62899e829e45" target="_blank" rel="noopener">录音文件lame转Mp3相关配置</a> 【PCM/CAF转MP3】</p>
+</li>
+<li><p><a href="http://oh6uhie7j.bkt.clouddn.com/lame.zip" target="_blank" rel="noopener">lame库</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/57f38f075ba0" target="_blank" rel="noopener">PCM文件转换成MP3（边录边转）</a> </p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2018/01/04/iOS-录音文件转Mp3/" data-title="iOS-录音文件转Mp3 | 陈凯晓的小麻袋" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/05/09/Mac-常用指令整理/" title="Mac-常用指令整理">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Mac-常用指令整理</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/09/29/iOS-旋转屏幕/"  title="iOS-旋转屏幕">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS-旋转屏幕
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#caf转mp3"><span class="toc-number">1.</span> <span class="toc-text"><a href="#caf&#x8F6C;mp3" class="headerlink" title="caf&#x8F6C;mp3"></a>caf&#x8F6C;mp3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#声明录音AVAudioRecorder对象"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x58F0;&#x660E;&#x5F55;&#x97F3;AVAudioRecorder&#x5BF9;&#x8C61;" class="headerlink" title="&#x58F0;&#x660E;&#x5F55;&#x97F3;AVAudioRecorder&#x5BF9;&#x8C61;"></a>&#x58F0;&#x660E;&#x5F55;&#x97F3;AVAudioRecorder&#x5BF9;&#x8C61;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CAF转换MP3相关配置"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#CAF&#x8F6C;&#x6362;MP3&#x76F8;&#x5173;&#x914D;&#x7F6E;" class="headerlink" title="CAF&#x8F6C;&#x6362;MP3&#x76F8;&#x5173;&#x914D;&#x7F6E;"></a>CAF&#x8F6C;&#x6362;MP3&#x76F8;&#x5173;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动录音"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x542F;&#x52A8;&#x5F55;&#x97F3;" class="headerlink" title="&#x542F;&#x52A8;&#x5F55;&#x97F3;"></a>&#x542F;&#x52A8;&#x5F55;&#x97F3;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#边录音边转码"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x8FB9;&#x5F55;&#x97F3;&#x8FB9;&#x8F6C;&#x7801;" class="headerlink" title="&#x8FB9;&#x5F55;&#x97F3;&#x8FB9;&#x8F6C;&#x7801;"></a>&#x8FB9;&#x5F55;&#x97F3;&#x8FB9;&#x8F6C;&#x7801;</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog配置/" title="Blog配置">Blog配置<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CocoaPods/" title="CocoaPods">CocoaPods<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/FFmpeg/" title="FFmpeg">FFmpeg<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OC/" title="OC">OC<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/流媒体服务器/" title="流媒体服务器">流媒体服务器<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/第三方库/" title="第三方库">第三方库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jackit.chen. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Jackit">Jackit</a>
+		
+		
+		</p>
+
+		<script type="text/javascript">
+		  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+		  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+		  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+		  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+		  
+		  _st('install','Eckvit11oxMdzupN46k_','2.0.0');
+		</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
